@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Livre d'Or PRO – Félicitations à Augustin Muteb, Géologue</title>
+<title>Félicitations Professionnelles – Augustin Muteb, Géologue</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -11,8 +11,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
 
 <style>
-/* ... (Styles CSS conservés tels quels) ... */
-/* VARIABLES CSS MODERNES (Thème Géologie : Bleu/Gris) */
+/* VARIABLES CSS MODERNES (Thème Géologie PRO: Bleu Azur/Or) */
 :root {
     --primaire: #0077B6; /* Bleu Azur élégant */
     --primaire-fonce: #005A8D;
@@ -64,11 +63,15 @@ header {
     display: block;
     text-decoration: none;
 }
+.header-logo i {
+    color: var(--secondaire);
+    margin-right: 5px;
+}
 
 /* --- HERO (CAROUSEL) --- */
 .hero {
     position: relative;
-    height: 550px; /* Hauteur augmentée */
+    height: 550px;
     overflow: hidden;
     border-radius: var(--rayon-grand);
     box-shadow: var(--ombre-pro);
@@ -82,7 +85,7 @@ header {
 .carousel-slide.active { opacity: 1; }
 .carousel-slide img {
     width: 100%; height: 100%; object-fit: cover;
-    filter: grayscale(0%) brightness(100%); /* RETRAIT DES FILTRES pour visibilité */
+    filter: grayscale(0%) brightness(100%);
     transition: transform 6s linear; transform-origin: center center;
 }
 .carousel-slide.active img { animation: kenBurns 15s infinite alternate; }
@@ -217,19 +220,19 @@ button[type="submit"]:hover::after { left: 100%; }
     color: #04AA6D;
     font-weight: 700;
     margin-top: 25px;
-    padding: 20px; /* Plus grand */
+    padding: 20px;
     background-color: #D4EDDA;
     border: 1px solid #C3E6CB;
     border-radius: 10px;
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.5s, transform 0.5s;
-    display: none; /* Caché par défaut */
+    display: none;
 }
 .confirmation.visible {
     opacity: 1;
     transform: translateY(0);
-    display: block; /* Apparaît */
+    display: block;
 }
 
 /* LIEN VERS LE LIVRE */
@@ -239,7 +242,7 @@ button[type="submit"]:hover::after { left: 100%; }
 }
 .link-livre a {
     color: var(--fond-sombre);
-    background-color: var(--secondaire); /* Bouton en Or */
+    background-color: var(--secondaire);
     font-weight: 700;
     text-decoration: none;
     font-size: 1.25em; 
@@ -251,7 +254,7 @@ button[type="submit"]:hover::after { left: 100%; }
 }
 .link-livre a:hover {
     background-color: var(--secondaire);
-    color: var(--texte); /* Texte foncé sur l'or */
+    color: var(--texte);
     box-shadow: 0 8px 20px rgba(255, 195, 0, 0.5);
     transform: scale(1.05);
 }
@@ -280,7 +283,7 @@ footer {
 <header>
     <div class="container">
         <a href="#" class="header-logo">
-            <i class="fas fa-hammer" style="color: var(--secondaire);"></i> Géo-Félicitations Pro
+            <i class="fas fa-graduation-cap"></i> Géo-Félicitations Professionnelles
         </a>
     </div>
 </header>
@@ -313,17 +316,21 @@ footer {
   <div class="form-card">
     <form id="formTemoignage">
       <div class="input-group">
-        <label for="nom">Votre nom :</label>         <input type="text" id="nom" placeholder="Ex : Arsene Mwamba" required maxlength="50"/>
+        <label for="nom">Votre nom et qualité :</label>
+        <input type="text" id="nom" placeholder="Ex : Arsene Mwamba, Collègue de Promo" required maxlength="50"/>
       </div>
       
       <div class="input-group">
-        <label for="message">Votre message de soutien pour Augustin Muteb le Mwant :</label>         <textarea id="message" rows="7" placeholder="Cher Augustin, felicitations pour cette nouvelle étape..." required minlength="10" maxlength="500"></textarea>
+        <label for="message">Votre message de soutien pour Augustin Muteb :</label>
+        <textarea id="message" rows="7" placeholder="Cher Augustin, félicitations pour cette étape majeure..." required minlength="10" maxlength="500"></textarea>
       </div>
 
       <button type="submit">
-        <i class="fas fa-hammer"></i> Envoyer mon message de soutien
+        <i class="fas fa-pen-square"></i> Soumettre mon message de félicitations
       </button>
-            <div id="confirmation" class="confirmation">Votre message a été enregistré avec succès ! Merci de votre contribution au succès d'Augustin, plus bas accedez au livre d'or. 🍾</div>
+            <div id="confirmation" class="confirmation">
+                Votre message a été enregistré avec succès ! Merci. Accédez au livre d'or ci-dessous. <i class="fas fa-check-circle"></i>
+            </div>
     </form>
   </div>
   
@@ -331,11 +338,13 @@ footer {
     </div>
 
 <footer>
-  — Gabby Umba  — Developpeur | Contact: +243 99 72 27 819 —
+  — Développé par Gabby Umba | Contact Pro: +243 99 72 27 819 —
 </footer>
 
 <script>
-// Configuration Firebase (MISE À JOUR AVEC VOTRE NOUVELLE CONFIGURATION)
+// ==========================================================
+// 🚨 CONFIGURATION FIREBASE (MISE À JOUR)
+// ==========================================================
 const firebaseConfig={
   apiKey:"AIzaSyAiMnvIMBqn2VqSQsFpb-Ajx5VORVd0JoA",
   authDomain: "danicakakudji.firebaseapp.com",
@@ -345,11 +354,11 @@ const firebaseConfig={
   appId: "1:409346091245:web:6674becbc81d97c292c4e4"
 };
 firebase.initializeApp(firebaseConfig);
-const db=firebase.firestore();
+const db = firebase.firestore();
 
 // Références DOM
-const form=document.getElementById('formTemoignage');
-const confirmation=document.getElementById('confirmation');
+const form = document.getElementById('formTemoignage');
+const confirmation = document.getElementById('confirmation');
 const submitButton = form.querySelector('button[type="submit"]');
 
 // --- LOGIQUE DU CARROUSEL ---
@@ -367,8 +376,8 @@ if (slides.length > 0) {
     setInterval(nextSlide, intervalTime);
 }
 
-// --- LOGIQUE DE GESTION DU FORMULAIRE AVEC DESTINATAIRE ---
-form.addEventListener('submit', async e => {
+// --- LOGIQUE DE GESTION DU FORMULAIRE ET ENREGISTREMENT ---
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     submitButton.disabled = true;
@@ -378,23 +387,23 @@ form.addEventListener('submit', async e => {
     const message = document.getElementById('message').value.trim();
 
     if (name.length < 2 || message.length < 10) {
-        alert("Erreur: Veuillez inclure votre nom (min. 2 caractères) et un message complet (min. 10 caractères).");
+        alert("Erreur de validation: Veuillez inclure votre nom (min. 2 caractères) et un message complet (min. 10 caractères).");
         submitButton.disabled = false;
-        submitButton.innerHTML = '<i class="fas fa-hammer"></i> Graver mon message de soutien';
+        submitButton.innerHTML = '<i class="fas fa-pen-square"></i> Soumettre mon message de félicitations';
         return;
     }
 
     try {
-        // ENREGISTREMENT DANS LA COLLECTION 'testimonials' POUR AUGUSTIN
+        // Enregistrement dans la collection 'testimonials' avec le filtre pour Augustin
         await db.collection("testimonials").add({
             name: name,
             message: message,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            recipient: "Augustin Muteb", // <-- ESSENTIEL POUR LE FILTRAGE
+            recipient: "Augustin Muteb", // Clé de filtrage essentielle
             source: "formulaire_principal_pro"
         });
 
-        // ... (Affichage de la confirmation) ...
+        // Affichage de la confirmation et réinitialisation
         form.reset();
         confirmation.style.display = 'block';
         setTimeout(() => confirmation.classList.add('visible'), 50);
@@ -403,14 +412,14 @@ form.addEventListener('submit', async e => {
             confirmation.classList.remove('visible');
             setTimeout(() => confirmation.style.display = 'none', 500);
             submitButton.disabled = false;
-            submitButton.innerHTML = '<i class="fas fa-hammer"></i> Envoyer mon message de soutien';
+            submitButton.innerHTML = '<i class="fas fa-pen-square"></i> Soumettre mon message de félicitations';
         }, 6000);
 
     } catch (err) {
         console.error("Erreur lors de l'ajout du message:", err);
-        alert("Une erreur technique est survenue. Veuillez réessayer plus tard.");
+        alert("Une erreur technique est survenue. Veuillez vérifier votre connexion.");
         submitButton.disabled = false;
-        submitButton.innerHTML = '<i class="fas fa-hammer"></i> Envoyer mon message de soutien';
+        submitButton.innerHTML = '<i class="fas fa-pen-square"></i> Soumettre mon message de félicitations';
     }
 });
 </script>
