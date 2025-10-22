@@ -3,334 +3,252 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Livre d'Or – Félicitations à Augustin Muteb, Géologue</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<title>Livre d'Or pour Augustin Muteb</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
 
 <style>
-/* VARIABLES CSS MODERNES (Thème Géologie : Bleu/Gris) */
+/* VARIABLES CSS (Thème Géologie PRO) */
 :root {
-    --primaire: #0077B6; /* Bleu Azur élégant */
-    --primaire-fonce: #005A8D;
-    --secondaire: #FFC300; /* Or Vif pour l'excellence */
-    --fond-clair: #F0F4F7; /* Gris très clair légèrement bleuté */
+    --primaire: #004D99; /* Bleu Cobalt Profond (plus sérieux) */
+    --primaire-fonce: #003366;
+    --secondaire: #FFC300; /* Or vif pour l'accent */
+    --fond-clair: #F8F9FA; /* Blanc cassé (Papier à dessin technique) */
     --fond-sombre: #fff;
-    --texte: #2C3E50; /* Gris-Bleu foncé (Ardoise) */
-    --ombre-pro: 0 20px 50px rgba(0, 0, 0, 0.1); 
-    --rayon-grand: 25px;
+    --texte: #343A40; /* Gris Anthracite (Gravier fin) */
+    --ombre-pro: 0 15px 45px rgba(0, 0, 0, 0.15); 
+    --rayon-faible: 8px; 
     --transition-rapide: 0.35s ease-in-out;
 }
 
-/* RESET ET FOND */
+/* BARRE DE PROGRESSION DE LECTURE */
+#progressBar {
+    position: fixed; top: 0; left: 0; width: 0%; height: 5px; 
+    background-color: var(--secondaire); 
+    z-index: 1000;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px rgba(255, 195, 0, 0.5);
+}
+
+/* RESET et FOND */
 body {
     font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     background-color: var(--fond-clair);
     color: var(--texte);
-    text-align: center;
-    line-height: 1.6;
-    opacity: 0;
-    animation: fadeIn 1.2s forwards;
-    background: linear-gradient(180deg, var(--fond-clair) 0%, #E3E9EE 100%);
+    text-align: center; line-height: 1.6;
+    padding-bottom: 50px;
 }
-@keyframes fadeIn { to { opacity: 1; } }
 
 /* STRUCTURE PRINCIPALE */
 .container {
-    max-width: 1200px;
+    max-width: 1300px; 
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* HEADER FLOTTANT */
+/* HEADER/TITRES Personnalisés */
 header {
     background-color: var(--fond-sombre);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    position: sticky; 
-    top: 0;
-    z-index: 100;
-    padding: 10px 0;
-}
-.header-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5em;
-    font-weight: 700;
-    color: var(--primaire-fonce);
-    display: block;
-    text-decoration: none;
-}
-
-/* --- HERO (CAROUSEL) --- */
-.hero {
-    position: relative;
-    height: 550px; /* Hauteur augmentée */
-    overflow: hidden;
-    border-radius: var(--rayon-grand);
-    box-shadow: var(--ombre-pro);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     margin-bottom: 50px;
-    margin-top: 20px;
-}
-.carousel-slide {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    opacity: 0; transition: opacity 1.5s ease-in-out;
-}
-.carousel-slide.active { opacity: 1; }
-.carousel-slide img {
-    width: 100%; height: 100%; object-fit: cover;
-    filter: grayscale(0%) brightness(100%); /* RETRAIT DES FILTRES pour visibilité */
-    transition: transform 6s linear; transform-origin: center center;
-}
-.carousel-slide.active img { animation: kenBurns 15s infinite alternate; }
-@keyframes kenBurns {
-    0% { transform: scale(1.05); }
-    100% { transform: scale(1.15); }
+    padding: 40px 0 20px 0;
+    border-bottom: 5px solid var(--primaire); 
 }
 
-.hero-text {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    background: rgba(44, 62, 80, 0.85); 
-    padding: 40px 70px; 
-    border-radius: var(--rayon-grand);
-    backdrop-filter: blur(10px);
+h1 {
+    color: var(--primaire);
     font-family: 'Playfair Display', serif;
-    border: 3px solid var(--secondaire); 
-    z-index: 10; transition: all 0.5s;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    font-size: 3.8em;
+    margin: 0;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
 }
-.hero-text h1 {
-    font-size: 52px; 
-    margin-bottom: 5px;
-    letter-spacing: 3px;
+h1 i {
     color: var(--secondaire);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-right: 10px;
 }
-.hero-text p {
-    font-style: italic;
-    font-size: 22px;
-    margin: 10px 0 0 0;
+p.subtitle {
+    font-size: 1.4em;
+    color: #5A6268;
+    margin-top: 15px;
     font-weight: 500;
 }
 
-/* TITRES DE SECTION */
-h2.section-title {
-    color: var(--primaire-fonce);
-    margin: 60px 0 20px;
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5em; 
-    font-weight: 700;
-    position: relative;
-    display: inline-block;
-}
-h2.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -15px; 
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px; 
-    height: 4px; 
-    background-color: var(--secondaire);
-    border-radius: 2px;
-}
-p.intro {
-    font-size: 1.4em; 
-    margin-bottom: 50px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    color: #555;
-}
-
-/* FORMULAIRE */
-form {
-    margin: 0 auto 60px auto;
-    max-width: 850px;
-    background: var(--fond-sombre);
-    padding: 50px; 
-    border-radius: var(--rayon-grand);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); 
-    text-align: left;
-    border-top: 8px solid var(--primaire); 
-    transition: transform 0.4s ease;
-}
-label {
-    color: var(--primaire-fonce);
-    font-size: 1.1em;
-    font-weight: 700;
-}
-input[type="text"], textarea {
-    width: 100%;
-    padding: 18px; 
-    margin-top: 8px;
-    border-radius: 15px; 
-    border: 1px solid #ccc;
-    font-size: 1.15em;
-    font-family: inherit;
-    resize: vertical;
-}
-input[type="text"]:focus, textarea:focus {
-    border-color: var(--primaire);
-    outline: none;
-    box-shadow: 0 0 0 5px rgba(0, 119, 182, 0.15);
-}
-
-/* BOUTON D'ACTION AMÉLIORÉ */
-button[type="submit"] {
-    width: 100%;
-    padding: 20px 24px;
-    border-radius: 18px; 
-    font-size: 1.3em;
-    color: white;
-    border: none;
-    cursor: pointer;
-    background-image: linear-gradient(45deg, var(--primaire), var(--primaire-fonce)); 
-    font-weight: 700;
-    letter-spacing: 1px;
-    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.4, 1);
-    box-shadow: 0 8px 20px rgba(0, 119, 182, 0.4);
-    position: relative;
+/* EFFET DE PARALLAXE SUR LA PHOTO */
+.hero {
+    max-height: 350px;
+    margin-top: 0; 
+    margin-bottom: 40px;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 2px solid #EEE;
     overflow: hidden;
+    position: relative;
 }
-button[type="submit"]:hover {
+.hero img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    filter: grayscale(0%) brightness(100%); /* RETRAIT DES FILTRES pour visibilité */
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(var(--y, 0)) scale(1.05);
+}
+
+/* GRILLE DES TÉMOIGNAGES */
+#temoignages-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* AMÉLIORATION DE LA CARTE (Rendu bloc-note / page de rapport) */
+.card {
+    background-color: var(--fond-sombre);
+    padding: 35px;
+    border-radius: var(--rayon-faible);
+    box-shadow: var(--ombre-pro);
+    text-align: left;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.4s ease;
+    border: 1px solid #E0E0E0; 
+    border-left: 7px solid var(--primaire); /* Ligne d'annotation Bleue */
+}
+.card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    border-left-color: var(--secondaire);
 }
-button[type="submit"]::after { /* Effet brillant */
-    content: '';
-    position: absolute; top: 0; left: -100%; width: 30%; height: 100%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: skewX(-20deg);
-    transition: left 0.8s ease;
-}
-button[type="submit"]:hover::after { left: 100%; }
 
-/* MESSAGE DE CONFIRMATION AVEC EFFET */
-.confirmation {
-    text-align: center;
-    color: #04AA6D;
+.card-message {
+    font-style: normal; 
+    font-size: 1.05em;
+    margin-bottom: 25px;
+    color: var(--texte);
+    border-bottom: 1px dashed #CCC; 
+    padding-bottom: 15px;
+    white-space: pre-wrap;
+}
+.card-message i.fa-quote-left {
+    color: var(--primaire); 
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+.card-author-name {
     font-weight: 700;
-    margin-top: 25px;
-    padding: 20px; /* Plus grand */
-    background-color: #D4EDDA;
-    border: 1px solid #C3E6CB;
-    border-radius: 10px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.5s, transform 0.5s;
-    display: none; /* Caché par défaut */
+    color: var(--primaire-fonce);
+    letter-spacing: 0.5px;
 }
-.confirmation.visible {
-    opacity: 1;
-    transform: translateY(0);
-    display: block; /* Apparaît */
+.card-author-name i {
+    color: var(--secondaire);
+    margin-right: 5px;
 }
 
-/* LIEN VERS LE LIVRE */
-.link-livre {
-    margin-top: 30px;
-    margin-bottom: 50px;
+/* ÉTATS PARTICULIERS (CHARGEMENT, AUCUN MESSAGE) */
+#loading, #no-messages {
+    background-color: var(--fond-sombre);
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: var(--rayon-faible);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid var(--secondaire);
 }
-.link-livre a {
+
+/* BOUTON RETOUR et BOUTON IMPRIMER (Style plus technique) */
+.action-buttons {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+.action-buttons a, .action-buttons button {
     color: var(--fond-sombre);
-    background-color: var(--secondaire); /* Bouton en Or */
+    background-image: linear-gradient(135deg, var(--primaire), var(--primaire-fonce)); 
+    padding: 15px 30px;
+    border-radius: 50px; 
     font-weight: 700;
     text-decoration: none;
-    font-size: 1.25em; 
-    padding: 15px 30px;
-    border: 3px solid var(--secondaire);
-    border-radius: 15px;
-    transition: all var(--transition-rapide);
-    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    box-shadow: 0 8px 15px rgba(0, 77, 153, 0.3);
+    transition: all 0.3s;
 }
-.link-livre a:hover {
-    background-color: var(--secondaire);
-    color: var(--texte); /* Texte foncé sur l'or */
-    box-shadow: 0 8px 20px rgba(255, 195, 0, 0.5);
-    transform: scale(1.05);
+.action-buttons a:hover, .action-buttons button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 77, 153, 0.5);
 }
 
-/* PIED DE PAGE */
-footer {
-    padding: 30px 0;
-    border-top: 1px solid #ddd;
-    margin-top: 60px;
-    background-color: var(--fond-sombre);
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03);
-    color: #777;
-    font-size: 0.9em;
+/* OPTIMISATION POUR IMPRESSION */
+@media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .hero, header, .action-buttons, footer, #progressBar { display: none !important; }
+    .card {
+        border: 1px solid #AAA !important; 
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin: 10px 0 !important;
+        padding: 15px !important;
+        border-left: 10px solid #000 !important; 
+    }
 }
 
 /* MEDIA QUERIES */
 @media(max-width: 768px) {
-    .hero { height: 450px; }
-    .hero-text h1 { font-size: 40px; }
-    form { padding: 25px; }
+    h1 { font-size: 2.8em; }
 }
 </style>
 </head>
 <body>
 
+<div id="progressBar"></div>
+
+<div class="hero">
+    <img id="hero-img" src="photo8.jpeg" alt="Portrait Professionnel d'Augustin Muteb, Géologue" loading="lazy"/>
+</div>
+
 <header>
-    <div class="container">
-        <a href="#" class="header-logo">
-            <i class="fas fa-hammer" style="color: var(--secondaire);"></i> Géo-Félicitations Pro
-        </a>
-    </div>
+    <div class="container">
+        <h1><i class="fas fa-chart-line"></i> Rapport d'Étude des Vœux</h1>
+        <p class="subtitle">Messages et vœux sincères pour Augustin Muteb, Géologue.</p>
+    </div>
 </header>
 
 <div class="container">
-    
-  <section class="hero">
-        <div id="carousel">
-      <div class="carousel-slide active"><img src="photo1.jpg" alt="Augustin Muteb Diplôme" loading="lazy"/></div>
-      <div class="carousel-slide"><img src="photo2.jpg" alt="Cérémonie Université de Kolwezi" loading="lazy"/></div>
-      <div class="carousel-slide"><img src="photo3.jpeg" alt="Augustin Muteb avec ses professeurs" loading="lazy"/></div>
-      <div class="carousel-slide"><img src="photo4.jpeg" alt="Groupe d'amis Géologues" loading="lazy"/></div>
-      </div>
-        <div class="hero-text">
-      <h1><i class="fas fa-mountain"></i> Augustin Muteb</h1>
-      <p>« L'avenir est construit sur une base solide. Félicitations Agustin Muteb, Géologue ! »</p>
-      <p style="font-size: 18px; margin-top: 15px;">Diplômé de l'Université de Kolwezi</p>
+    
+    <div id="loading">
+        <i class="fas fa-circle-notch fa-spin"></i> **Traitement des données géologiques...**
     </div>
-  </section>
 
-  <h2 class="section-title">✍️ Livre d’Or</h2>
-  <p class="intro">
-    Laissez votre marque sur la nouvelle fondation d'Augustin le Mwant. Chaque mot est une ressource précieuse pour son cheminement professionnel. Exprimez votre soutien avec joie  et amour.
-  </p>
+    <div id="temoignages-container">
+            </div>
 
-  <div class="form-card">
-    <form id="formTemoignage">
-      <div class="input-group">
-        <label for="nom">Votre nom :</label>         <input type="text" id="nom" placeholder="Ex : Arsene Mwamba" required maxlength="50"/>
-      </div>
-      
-      <div class="input-group">
-        <label for="message">Votre message de soutien pour Augustin Muteb le Mwant :</label>         <textarea id="message" rows="7" placeholder="Cher Augustin, felicitations pour cette nouvelle etape..." required minlength="10" maxlength="500"></textarea>
-      </div>
+    <div id="no-messages" style="display: none;">
+        <i class="fas fa-box-open"></i> Le gisement est inexploré. Soyez le premier à contribuer au rapport !
+    </div>
 
-      <button type="submit">
-        <i class="fas fa-hammer"></i> Envoyer mon message 
-      </button>
-            <div id="confirmation" class="confirmation">Votre message a été enregistré avec succès ! Merci de votre contribution au succès d'Augustin, plus bas accedez au livre. 🍾</div>
-    </form>
-  </div>
-  
-  <div class="link-livre"><a href="livre.html"><i class="fas fa-book-open"></i> Accéder au Livre d’Or Complet</a></div>
-    </div>
+    <div class="action-buttons">
+        <button id="printButton" onclick="window.print()">
+            <i class="fas fa-print"></i> Générer le **Rapport d'Impression**
+        </button>
+        <a href="index.html">
+            <i class="fas fa-pen-nib"></i> Rédiger un nouveau témoignage
+        </a>
+    </div>
+
+</div>
 
 <footer>
-  — Gabby Umba | Contact: +243 99 72 27 819 —
+    — Rapport Final Augustin Muteb | Un Ingénieur Géologue Compétent —
 </footer>
 
 <script>
-// Configuration Firebase (Vérifiez votre API KEY ici)
+// Configuration Firebase (Doit être la même que index.html)
 const firebaseConfig={
   apiKey:"AIzaSyCQWUPt2d5RaPvPfSqgi4oU-VxMpL6STvQ",
   authDomain:"shekinahmukeni-74b9d.firebaseapp.com",
@@ -343,71 +261,106 @@ firebase.initializeApp(firebaseConfig);
 const db=firebase.firestore();
 
 // Références DOM
-const form=document.getElementById('formTemoignage');
-const confirmation=document.getElementById('confirmation');
-const submitButton = form.querySelector('button[type="submit"]');
+const container = document.getElementById('temoignages-container');
+const loading = document.getElementById('loading');
+const noMessages = document.getElementById('no-messages');
 
-// --- LOGIQUE DU CARROUSEL ---
-const slides = document.querySelectorAll('#carousel .carousel-slide');
-let currentSlide = 0;
-const intervalTime = 5000; 
-
-function nextSlide() {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
-}
-if (slides.length > 0) {
-    slides[0].classList.add('active'); 
-    setInterval(nextSlide, intervalTime);
+/**
+ * Logique pour l'effet de Parallaxe 
+ */
+const heroImg = document.getElementById('hero-img');
+if (heroImg) {
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        const yOffset = Math.min(scrollPosition * 0.2, 30);
+        heroImg.style.setProperty('--y', `${yOffset}px`);
+    });
 }
 
-// --- LOGIQUE DE GESTION DU FORMULAIRE AVEC DESTINATAIRE ---
-form.addEventListener('submit', async e => {
-    e.preventDefault();
+/**
+ * Logique pour la Barre de Progression de Lecture 
+ */
+window.addEventListener('scroll', () => {
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPosition = window.scrollY;
+    const progress = (scrollPosition / totalHeight) * 100;
+    document.getElementById('progressBar').style.width = `${progress}%`;
+});
 
-    submitButton.disabled = true;
-    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi sécurisé en cours...';
 
-    const name = document.getElementById('nom').value.trim();
-    const message = document.getElementById('message').value.trim();
+/* FONCTIONS FIREBASE ET AFFICHAGE */
+function formatDate(timestamp) {
+    if (!timestamp || !timestamp.toDate) return 'Date inconnue';
+    const date = timestamp.toDate();
+    return date.toLocaleDateString('fr-FR', {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+}
 
-    if (name.length < 2 || message.length < 10) {
-        alert("Erreur: Veuillez inclure votre nom (min. 2 caractères) et un message complet (min. 10 caractères).");
-        submitButton.disabled = false;
-        submitButton.innerHTML = '<i class="fas fa-hammer"></i> Graver mon message de soutien';
-        return;
-    }
+function createCardHTML(data) {
+    const formattedDate = formatDate(data.timestamp);
+    const safeName = data.name ? data.name.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'Anonyme';
+    const safeMessage = data.message ? data.message.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, '<br>') : 'Message vide.';
+
+    return `
+        <div class="card">
+            <p class="card-message">
+                <i class="fas fa-quote-left"></i> ${safeMessage}
+            </p>
+            <div class="card-author">
+                <span class="card-author-name">
+                    <i class="fas fa-user-tie"></i> ${safeName}
+                </span>
+                <span class="card-timestamp">
+                    <i class="fas fa-calendar-alt"></i> ${formattedDate}
+                </span>
+            </div>
+        </div>
+    `;
+}
+
+async function loadTestimonials() {
+    loading.style.display = 'block';
+    container.innerHTML = '';
+    noMessages.style.display = 'none';
+
+    // Définir le destinataire attendu pour le filtre
+    const DESTINATAIRE = "Augustin Muteb"; 
 
     try {
-        // AJOUT DU CHAMP DE FILTRAGE
-        await db.collection("testimonials").add({
-            name: name,
-            message: message,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            recipient: "Augustin Muteb", // <-- ESSENTIEL POUR LE FILTRAGE
-            source: "formulaire_principal_pro"
+        // REQUÊTE FILTRÉE : N'affiche que les messages destinés à Augustin
+        const snapshot = await db.collection("testimonials")
+            .where("recipient", "==", DESTINATAIRE) // <-- FILTRE ESSENTIEL
+            .orderBy("timestamp", "desc")
+            .get();
+
+        loading.style.display = 'none';
+
+        if (snapshot.empty) {
+            noMessages.style.display = 'block';
+            return;
+        }
+
+        let cardsHTML = '';
+        snapshot.docs.forEach(doc => {
+            const data = doc.data();
+            cardsHTML += createCardHTML(data);
         });
 
-        // AFFICHAGE DE LA CONFIRMATION
-        form.reset();
-        confirmation.style.display = 'block'; // Fait apparaître le bloc
-        setTimeout(() => confirmation.classList.add('visible'), 50);
-
-        setTimeout(() => {
-            confirmation.classList.remove('visible');
-            setTimeout(() => confirmation.style.display = 'none', 500); // Cache le bloc après l'animation
-            submitButton.disabled = false;
-            submitButton.innerHTML = '<i class="fas fa-hammer"></i> Graver mon message de soutien';
-        }, 6000);
-
-    } catch (err) {
-        console.error("Erreur lors de l'ajout du message:", err);
-        alert("Une erreur technique est survenue. Veuillez réessayer plus tard.");
-        submitButton.disabled = false;
-        submitButton.innerHTML = '<i class="fas fa-hammer"></i> Graver mon message de soutien';
+        container.innerHTML = cardsHTML;
+        
+    } catch (error) {
+        console.error("Erreur lors du chargement des témoignages:", error);
+        loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Erreur critique lors du chargement des données. Veuillez vérifier la connexion Firebase et la règle de filtrage.`;
     }
-});
+}
+
+document.addEventListener('DOMContentLoaded', loadTestimonials);
 </script>
 </body>
 </html>
