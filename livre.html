@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+    <!-- Scripts Firebase V8 Compatibility (essentiels pour l'utilisation sans module) -->
     <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js" defer></script>
 
@@ -291,12 +292,13 @@
 <div id="progressBar"></div>
 
 <div class="hero">
-    <img id="hero-img" src="photo8.jpeg" alt="Portrait Professionnel d'Augustin Muteb, Géologue" loading="lazy" style="transform: translateY(var(--y, 0));"/>
+    <!-- VÉRIFIEZ LE CHEMIN ET L'EXTENSION DE CETTE PHOTO -->
+    <img id="hero-img" src="photo8.jpeg" alt="Portrait Professionnel d'Augustin Muteb, Géologue" loading="lazy" style="transform: translateY(var(--y, 0));" onerror="this.src='https://placehold.co/1400x400/004D99/FFFFFF?text=Photo+Professionnelle'"/>
 </div>
 
 <header>
     <div class="container">
-        <h1><i class="fas fa-chart-line"></i> Livre d'Or</h1>
+        <h1><i class="fas fa-chart-line"></i> Rapport du Livre d'Or</h1>
         <p class="subtitle">Tous les messages, témoignages et vœux sincères pour Augustin Muteb, Géologue.</p>
     </div>
 </header>
@@ -304,7 +306,7 @@
 <div class="container">
     
     <div id="loading">
-        <i class="fas fa-circle-notch fa-spin"></i>  Veuillez patienter.
+        <i class="fas fa-circle-notch fa-spin"></i>  Chargement des données du gisement de vœux...
     </div>
 
     <div id="temoignages-container">
@@ -332,20 +334,27 @@
 </footer>
 
 <script>
-// Configuration Firebase (Doit être la même que index.html)
+// Configuration Firebase MISE À JOUR avec vos données
 const firebaseConfig={
-    apiKey:"AIzaSyCQWUPt2d5RaPvPfSqgi4oU-VxMpL6STvQ",
-    authDomain:"shekinahmukeni-74b9d.firebaseapp.com",
-    projectId:"shekinahmukeni-74b9d",
-    storageBucket:"shekinahmukeni-74b9d.appspot.com",
-    messagingSenderId:"351153147633",
-    appId:"1:351153147633:web:c82d85f1ad9a79d6ed6350"
+    apiKey:"AIzaSyAiMnvIMBqn2VqSQsFpb-Ajx5VORVd0JoA",
+    authDomain:"danicakakudji.firebaseapp.com",
+    projectId:"danicakakudji",
+    storageBucket:"danicakakudji.firebasestorage.app",
+    messagingSenderId:"409346091245",
+    appId:"1:409346091245:web:6674becbc81d97c292c4e4"
 };
 
-if (!firebase.apps.length) {
+// --- 1. INITIALISATION FIREBASE ---
+if (typeof firebase !== 'undefined' && typeof firebase.apps !== 'undefined' && !firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
-const db = firebase.firestore();
+const db = (typeof firebase !== 'undefined' && firebase.firestore) ? firebase.firestore() : null;
+
+if (!db) {
+    document.getElementById('loading').innerHTML = `
+        <i class="fas fa-exclamation-triangle"></i> ERREUR : La connexion à la base de données a échoué.
+    `;
+}
 
 // Références DOM
 const container = document.getElementById('temoignages-container');
@@ -353,7 +362,7 @@ const loading = document.getElementById('loading');
 const noMessages = document.getElementById('no-messages');
 const heroImg = document.getElementById('hero-img');
 
-/* --- 1. UX: LOGIQUE DE PARALLAXE --- */
+/* --- 2. UX: LOGIQUE DE PARALLAXE --- */
 if (heroImg) {
     window.addEventListener('scroll', () => {
         const scrollPosition = window.scrollY;
@@ -362,7 +371,7 @@ if (heroImg) {
     });
 }
 
-/* --- 2. UX: LOGIQUE DE BARRE DE PROGRESSION --- */
+/* --- 3. UX: LOGIQUE DE BARRE DE PROGRESSION --- */
 window.addEventListener('scroll', () => {
     const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPosition = window.scrollY;
@@ -371,7 +380,7 @@ window.addEventListener('scroll', () => {
 });
 
 
-/* --- 3. FIREBASE et AFFICHAGE (Sécurisé et Formaté) --- */
+/* --- 4. FIREBASE et AFFICHAGE --- */
 function formatDate(timestamp) {
     if (!timestamp || !timestamp.toDate) return 'Date inconnue';
     const date = timestamp.toDate();
@@ -392,10 +401,10 @@ function formatDate(timestamp) {
 function createCardHTML(data) {
     const formattedDate = formatDate(data.timestamp);
     
-    // SANITATION: Nettoyer le contenu pour éviter l'injection de code malveillant (XSS)
+    // SANITATION: Nettoyer le contenu
     const sanitize = (str) => {
         if (!str) return '';
-        return str.replace(/&/g, "&amp;")
+        return str.toString().replace(/&/g, "&amp;")
                  .replace(/</g, "&lt;")
                  .replace(/>/g, "&gt;")
                  .replace(/"/g, "&quot;")
@@ -423,41 +432,58 @@ function createCardHTML(data) {
     `;
 }
 
-async function loadTestimonials() {
+function loadTestimonials() {
+    if (!db) return; // Ne pas continuer si la DB n'est pas initialisée
+
     loading.style.display = 'block';
     container.innerHTML = '';
     noMessages.style.display = 'none';
 
-    try {
-        // CHARGEMENT DES MESSAGES (triés par date, du plus récent au plus ancien)
-        const snapshot = await db.collection("testimonials")
-            .orderBy("timestamp", "desc") 
-            .get();
+    // Utilisation de onSnapshot pour la mise à jour en temps réel
+    db.collection("testimonials")
+        .orderBy("timestamp", "desc") 
+        .onSnapshot((snapshot) => {
+            loading.style.display = 'none';
 
-        loading.style.display = 'none';
+            if (snapshot.empty) {
+                container.innerHTML = '';
+                noMessages.style.display = 'block';
+                return;
+            }
 
-        if (snapshot.empty) {
-            noMessages.style.display = 'block';
-            return;
-        }
+            let cardsHTML = '';
+            snapshot.docs.forEach(doc => {
+                const data = doc.data();
+                cardsHTML += createCardHTML(data);
+            });
 
-        let cardsHTML = '';
-        snapshot.docs.forEach(doc => {
-            const data = doc.data();
-            cardsHTML += createCardHTML(data);
+            container.innerHTML = cardsHTML;
+        }, (error) => {
+            console.error("Erreur d'écoute de Firebase:", error);
+            loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ERREUR : Échec de la lecture des données. Vérifiez les règles de sécurité.`;
+            loading.style.color = 'var(--accent-rouge)';
+            loading.style.display = 'block';
         });
-
-        container.innerHTML = cardsHTML;
-        
-    } catch (error) {
-        console.error("Erreur lors du chargement des témoignages:", error);
-        loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Erreur critique lors du chargement des données. Vérifiez la connexion Firebase.`;
-        loading.style.color = 'var(--accent-rouge)';
-        loading.style.display = 'block'; // Assurez-vous qu'il reste visible en cas d'erreur
-    }
 }
 
 document.addEventListener('DOMContentLoaded', loadTestimonials);
 </script>
 </body>
 </html>
+```
+***
+
+**Étapes finales importantes :**
+
+1.  **Vérifiez à nouveau vos règles Firestore.** Dans votre console Firebase > Firestore > Règles, assurez-vous qu'elles permettent la lecture et l'écriture, comme ceci :
+
+    ```firestore
+    rules_version = '2';
+    service cloud.firestore {
+      match /databases/{database}/documents {
+        match /{document=**} {
+          allow read, write: if true;
+        }
+      }
+    }
+    
