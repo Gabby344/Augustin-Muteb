@@ -110,8 +110,8 @@
         .carousel-slide.active { opacity: 1; }
         .carousel-slide img {
             width: 100%; height: 100%; object-fit: cover;
-            /* 🔑 CORRECTION VISIBILITÉ PHOTOS : Réduction du filtre et augmentation de la luminosité */
-            filter: grayscale(10%) brightness(85%); 
+            /* ✅ Photo plus visible : Enlever le filtre pour une clarté maximale */
+            filter: none; 
             transition: transform 6s linear;
         }
         /* Effet Ken Burns (zoom subtil) sur l'image active */
@@ -126,12 +126,14 @@
             transform: translate(-50%, -50%);
             color: #fff;
             z-index: 10;
-            background: rgba(44, 62, 80, 0.9); 
-            padding: 50px 80px;
-            border-radius: var(--rayon-grand);
-            backdrop-filter: blur(5px);
-            border: 5px solid var(--secondaire);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); 
+            /* 🔑 CORRECTION MAJEURE : Supprimer l'encadrement opaque pour ne laisser que le texte */
+            background: none; /* Rendre le fond transparent */
+            padding: 0; /* Enlever le padding de la boîte */
+            border-radius: 0; /* Enlever le border-radius */
+            backdrop-filter: none; /* Enlever le blur */
+            border: none; /* Enlever la bordure */
+            box-shadow: none; /* Enlever l'ombre de la boîte */
+            text-align: center; /* S'assurer que le texte à l'intérieur est centré */
             font-family: 'Playfair Display', serif;
         }
         .hero-text h1 {
@@ -139,7 +141,8 @@
             margin-bottom: 5px;
             letter-spacing: 5px;
             color: var(--secondaire);
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            /* AJOUT : Un contour de texte pour lisibilité sur toutes les photos */
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9), 0 0 5px rgba(0, 0, 0, 0.7);
         }
         .hero-text p {
             font-style: italic;
@@ -147,6 +150,8 @@
             margin: 10px 0 0 0;
             font-weight: 300; 
             color: #EFEFEF;
+            /* AJOUT : Un contour de texte pour lisibilité sur toutes les photos */
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 0 3px rgba(0, 0, 0, 0.5);
         }
         .hero-text .diplome-info {
             font-size: 18px;
@@ -154,6 +159,7 @@
             font-weight: 500;
             color: var(--secondaire);
             letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 0 3px rgba(0, 0, 0, 0.5);
         }
 
         /* ======================================================= */
@@ -197,15 +203,14 @@
         /* ============= 5. FORMULAIRE (CARTE PRO) =============== */
         /* ======================================================= */
         .form-card {
-            /* 🔑 CORRECTION TRANSPARENCE FORMULAIRE : Rendre l'encadré semi-transparent */
-            background-color: rgba(255, 255, 255, 0.9); 
+            /* 🔑 CORRECTION TRANSPARENCE FORMULAIRE : Rendre l'encadré semi-transparent (ajusté à 95%) */
+            background-color: rgba(255, 255, 255, 0.95); 
             border-radius: var(--rayon-grand);
             box-shadow: var(--ombre-pro);
             max-width: 850px;
             margin: 0 auto 60px;
             overflow: hidden;
             border: 1px solid #e0e0e0;
-            /* Le box-shadow et la bordure permettent de bien distinguer le formulaire */
         }
 
         form {
