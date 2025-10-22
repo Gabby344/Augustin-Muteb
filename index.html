@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Livre d'Or PRO 💎 – Félicitations à Augustin Muteb, Géologue Diplômé</title>
-    <meta name="description" content="Laissez un message professionnel de félicitations à Augustin Muteb, nouvellement diplômé en Ingénierie Géologique de l'Université de Kolwezi.">
+    <title>Livre d'Or  💎 – Félicitations à Augustin Muteb, Géologue Diplômé</title>
+    <meta name="description" content="Laissez un message professionnel de félicitations à Augustin Muteb, nouvellement diplômé en Géologie de l'Université de Kolwezi.">
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -101,7 +101,9 @@
 
         .carousel-slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0; transition: opacity 1.5s ease-in-out;
+            opacity: 0; 
+            /* Transition clé pour l'effet de fondu du carrousel */
+            transition: opacity 1.5s ease-in-out; 
         }
         .carousel-slide.active { opacity: 1; }
         .carousel-slide img {
@@ -109,6 +111,7 @@
             filter: grayscale(20%) brightness(65%); /* Plus sombre pour meilleur texte */
             transition: transform 6s linear;
         }
+        /* Effet Ken Burns (zoom subtil) sur l'image active */
         .carousel-slide.active img { animation: kenBurns 18s infinite alternate; } 
         @keyframes kenBurns {
             0% { transform: scale(1.05); }
@@ -416,33 +419,33 @@
         <div class="hero-text">
             <h1><i class="fas fa-mountain"></i> Augustin Muteb</h1>
             <p>« L'avenir est construit sur une base solide. Félicitations, Géologue ! »</p>
-            <p class="diplome-info">**Diplômé de l'Université de Kolwezi**</p>
+            <p class="diplome-info">Diplômé de l'Université de Kolwezi</p>
         </div>
     </section>
 
     <section class="guestbook-section">
         <h2 class="section-title"><i class="fas fa-scroll"></i> Le Registre des Vœux</h2>
         <p class="intro">
-            Laissez votre marque sur la nouvelle fondation d'Augustin. Chaque mot est une **ressource précieuse** pour son cheminement professionnel en **Ingénierie Géologique**. Exprimez votre soutien avec distinction.
+                        Votre message est un encouragement précieux pour le cheminement professionnel d'Augustin. Partagez votre soutien avec joie et amour..
         </p>
 
         <div class="form-card">
             <form id="formTemoignage">
                 <div class="input-group">
-                    <label for="nom">Votre Nom, Titre ou Qualification Professionnelle :</label>
-                    <input type="text" id="nom" placeholder="Ex : Ing. Tshibangu Junior, GECAMINES | Prof. Kabwe, UNIKOL" required maxlength="75"/>
+                    <label for="nom">Votre Prenom et Nom :</label>
+                    <input type="text" id="nom" placeholder="Ex : Arsene Mwamba ="75"/>
                 </div>
                 
                 <div class="input-group">
-                    <label for="message">Votre message de félicitations professionnel :</label>
-                    <textarea id="message" rows="7" placeholder="Cher Augustin, le sol est maintenant tien ! Je te souhaite une carrière riche en découvertes, en leadership et en succès techniques..." required minlength="20" maxlength="800"></textarea>
+                    <label for="message">Votre message de félicitations :</label>
+                    <textarea id="message" rows="7" placeholder="Cher Augustin, felicitations pour cette nouvelle étape..." required minlength="20" maxlength="800"></textarea>
                 </div>
 
                 <button type="submit">
-                    <i class="fas fa-check-circle"></i> Finaliser et **Graver** mon message de soutien
+                    <i class="fas fa-check-circle"></i> Envoyez mon message 
                 </button>
                 <div id="confirmation" class="confirmation">
-                    <i class="fas fa-certificate"></i> Votre message a été enregistré avec succès ! Merci de votre contribution au succès d'Augustin.
+                    <i class="fas fa-certificate"></i> Votre message a été enregistré avec succès ! Merci de votre contribution au succès d'Augustin, plus bas accédez au livre d'or.
                 </div>
             </form>
         </div>
@@ -450,7 +453,7 @@
     
     <div class="link-livre">
         <a href="livre.html" class="cta-livre">
-            <i class="fas fa-book-open"></i> Accéder au **Livre d’Or Complet**
+            <i class="fas fa-book-open"></i> Accéder au Livre d’Or 
         </a>
     </div>
 
@@ -458,15 +461,15 @@
 
 <footer>
     <div class="container">
-        <p>— Conception & Développement Web Professionnel : Gabby Umba —</p>
+        <p>— Conception & Développement : Gabby Umba —</p>
         <p>Contact (WhatsApp) : <a href="tel:+243997227819">+243 99 72 27 819</a> | 
-           <a href="mailto:gabby.umba.dev@example.com">gabby.umba.dev@example.com</a></p>
-        <p style="margin-top: 15px; font-size: 0.8em; opacity: 0.7;">&copy; 2025 Livre d'Or Professionnel. Tous droits réservés.</p>
+           <a href=gabbyumba344@gmail.com">gabbyumba344@gmail.com</a></p>
+        <p style="margin-top: 15px; font-size: 0.8em; opacity: 0.7;">&copy; 2025 The gift of words. Tous droits réservés.</p>
     </div>
 </footer>
 
 <script>
-    // Configuration Firebase (Doit être vérifiée, mais laissée telle quelle)
+    // Configuration Firebase (À adapter avec vos propres clés)
     const firebaseConfig={
         apiKey:"AIzaSyCQWUPt2d5RaPvPfSqgi4oU-VxMpL6STvQ",
         authDomain:"shekinahmukeni-74b9d.firebaseapp.com",
@@ -487,20 +490,29 @@
     const confirmation = document.getElementById('confirmation');
     const submitButton = form.querySelector('button[type="submit"]');
 
-    // --- 2. LOGIQUE DU CARROUSEL ---
+    // --- 2. LOGIQUE DU CARROUSEL (Défilement des photos) ---
     const slides = document.querySelectorAll('#carousel .carousel-slide');
     let currentSlide = 0;
-    const intervalTime = 7000; 
+    const intervalTime = 7000; // Défilement toutes les 7 secondes
 
     function nextSlide() {
+        // Masque la diapositive actuelle
         slides[currentSlide].classList.remove('active');
+        
+        // Calcule l'index de la diapositive suivante (boucle au début si fin atteinte)
         currentSlide = (currentSlide + 1) % slides.length;
+        
+        // Affiche la nouvelle diapositive (déclenche la transition CSS de fondu)
         slides[currentSlide].classList.add('active');
     }
 
-    if (slides.length > 0) {
-        slides[0].classList.add('active'); 
+    if (slides.length > 1) {
+        slides[0].classList.add('active'); // Assure que la première est visible au chargement
+        // Démarre l'intervalle de défilement automatique
         setInterval(nextSlide, intervalTime);
+    } else if (slides.length === 1) {
+        // S'il n'y a qu'une seule image, l'afficher sans défilement
+        slides[0].classList.add('active');
     }
 
     // --- 3. GESTION DU FORMULAIRE FIREBASE (avec meilleure UX) ---
