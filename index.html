@@ -398,7 +398,7 @@
 <header>
     <div class="container">
         <a href="#" class="header-logo">
-            <i class="fas fa-hammer" style="color: var(--secondaire);"></i> Bravo Augustin Muteb Le Mwant 
+            <i class="fas fa-hammer" style="color: var(--secondaire);"></i> Géo-Félicitations Pro
         </a>
     </div>
 </header>
@@ -417,34 +417,34 @@
         </div>
         <div class="hero-text">
             <h1><i class="fas fa-mountain"></i> Augustin Muteb</h1>
-            <p>« L'avenir est construit sur une base solide. Félicitations, cher Géologue ! »</p>
-            <p class="diplome-info">Diplômé de l'Université de Kolwezi</p>
+            <p>« L'avenir est construit sur une base solide. Félicitations, Géologue ! »</p>
+            <p class="diplome-info">**Diplômé de l'Université de Kolwezi**</p>
         </div>
     </section>
 
     <section class="guestbook-section">
-        <h2 class="section-title"><i class="fas fa-scroll"></i> Le Registre de tous vos Vœux</h2>
+        <h2 class="section-title"><i class="fas fa-scroll"></i> Le Registre des Vœux</h2>
         <p class="intro">
-            Transmettez vos vœux sincères pour le début d'une carrière prometteuse. Votre message est un encouragement précieux pour le cheminement professionnel d'Augustin. Partagez votre soutien avec joie et amour.
+            Transmettez vos vœux sincères pour le début d'une carrière prometteuse. Votre message est un **encouragement précieux** pour le cheminement professionnel d'Augustin. Partagez votre soutien avec élégance.
         </p>
 
         <div class="form-card">
             <form id="formTemoignage">
                 <div class="input-group">
-                    <label for="nom">Votre Prenom et Nom</label>
-                    <input type="text" id="nom" placeholder="Exemple :Arsene Mwamba" required maxlength="75"/>
+                    <label for="nom">Votre Nom, Titre ou Qualification Professionnelle :</label>
+                    <input type="text" id="nom" placeholder="Ex : Ing. Tshibangu Junior, GECAMINES" required maxlength="75"/>
                 </div>
                 
                 <div class="input-group">
-                    <label for="message">Votre message de félicitations:</label>
-                    <textarea id="message" rows="7" placeholder="Cher Augustin, je te souhaite plein succès dans cette nouvelle étape de ta vie..." required minlength="20" maxlength="800"></textarea>
+                    <label for="message">Votre message de félicitations professionnel :</label>
+                    <textarea id="message" rows="7" placeholder="Cher Augustin, je te souhaite une carrière riche en découvertes, en leadership et en succès techniques..." required minlength="20" maxlength="800"></textarea>
                 </div>
 
-                <button type="submit">
-                    <i class="fas fa-check-circle"></i> Envoyez mon message 
+                <button type="submit" id="submitBtn">
+                    <i class="fas fa-check-circle"></i> Finaliser et **Graver** mon message de soutien
                 </button>
                 <div id="confirmation" class="confirmation">
-                    <i class="fas fa-certificate"></i> Votre message a été enregistré avec succès ! Merci de votre contribution au succès d'Augustin, plus bas accédez au livre d'Or.
+                    <i class="fas fa-certificate"></i> Votre message a été enregistré avec succès ! Merci de votre contribution au succès d'Augustin.
                 </div>
             </form>
         </div>
@@ -452,7 +452,7 @@
     
     <div class="link-livre">
         <a href="livre.html" class="cta-livre">
-            <i class="fas fa-book-open"></i> Accéder au Livre d’Or Complet
+            <i class="fas fa-book-open"></i> Accéder au **Livre d’Or Complet**
         </a>
     </div>
 
@@ -460,16 +460,17 @@
 
 <footer>
     <div class="container">
-        <p> Conception & Développement: Gabby Umba</p>
-        <p>Contact (WhatsApp) : <a href="Whatsapp:+243997227819">+243 99 72 27 819</a> | 
-           <a href="gabbyumba344@gmail.com">gabbyumba344@gmail.com</a></p>
+        <p>— Conception & Développement Web Professionnel : Gabby Umba —</p>
+        <p>Contact (WhatsApp) : <a href="tel:+243997227819">+243 99 72 27 819</a> | 
+           <a href="mailto:gabby.umba.dev@example.com">gabby.umba.dev@example.com</a></p>
         <p style="margin-top: 15px; font-size: 0.8em; opacity: 0.7;">&copy; 2025 Livre d'Or Professionnel. Tous droits réservés.</p>
     </div>
 </footer>
 
 <script>
+document.addEventListener('DOMContentLoaded', () => {
     // Configuration Firebase MISE À JOUR avec vos données
-    const firebaseConfig={
+    const firebaseConfig = {
         apiKey:"AIzaSyAiMnvIMBqn2VqSQsFpb-Ajx5VORVd0JoA",
         authDomain:"danicakakudji.firebaseapp.com",
         projectId:"danicakakudji",
@@ -479,21 +480,34 @@
     };
 
     // --- 1. INITIALISATION FIREBASE ---
-    // Utilise la méthode V8/Compat pour l'initialisation
-    if (typeof firebase !== 'undefined' && typeof firebase.apps !== 'undefined' && !firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
-    // Vérifie si Firestore est disponible
-    const db = (typeof firebase !== 'undefined' && firebase.firestore) ? firebase.firestore() : null;
+    let db = null;
+    let authError = false;
 
-    if (!db) {
-        console.error("ERREUR CRITIQUE: Firestore n'est pas chargé. Vérifiez les scripts de chargement Firebase.");
+    if (typeof firebase !== 'undefined' && typeof firebase.apps !== 'undefined') {
+        try {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            db = firebase.firestore();
+            console.log("Firebase et Firestore initialisés avec succès.");
+        } catch (e) {
+            console.error("Erreur d'initialisation de Firebase:", e);
+            authError = true;
+        }
+    } else {
+        console.error("ERREUR: L'objet 'firebase' n'est pas défini. Les scripts SDK n'ont peut-être pas été chargés.");
+        authError = true;
     }
 
     // Références DOM
     const form = document.getElementById('formTemoignage');
     const confirmation = document.getElementById('confirmation');
-    const submitButton = form.querySelector('button[type="submit"]');
+    const submitButton = document.getElementById('submitBtn');
+
+    if (authError) {
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<i class="fas fa-times-circle"></i> ERREUR: DB indisponible (voir console)';
+    }
 
     // --- 2. LOGIQUE DU CARROUSEL (Défilement des photos) ---
     const slides = document.querySelectorAll('#carousel .carousel-slide');
@@ -501,6 +515,7 @@
     const intervalTime = 7000; // Défilement toutes les 7 secondes
 
     function nextSlide() {
+        if (slides.length === 0) return;
         slides[currentSlide].classList.remove('active');
         currentSlide = (currentSlide + 1) % slides.length;
         slides[currentSlide].classList.add('active');
@@ -517,7 +532,13 @@
         e.preventDefault();
         
         if (!db) {
-            alert("Erreur: Le service de base de données est indisponible.");
+            // Utiliser le message de confirmation pour l'erreur
+            confirmation.style.backgroundColor = '#F8D7DA'; 
+            confirmation.style.color = '#721C24';
+            confirmation.innerHTML = `<i class="fas fa-times-circle"></i> Le service de base de données est indisponible.`;
+            confirmation.classList.add('visible');
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Réessayez';
             return;
         }
 
@@ -528,24 +549,28 @@
         const message = document.getElementById('message').value.trim();
 
         if (name.length < 2 || message.length < 20) { 
-             // Utiliser le message de confirmation pour l'erreur au lieu d'alert()
-            confirmation.classList.remove('visible'); // Cacher si c'est déjà visible
+            confirmation.style.backgroundColor = '#F8D7DA'; 
+            confirmation.style.color = '#721C24';
+            confirmation.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erreur: Le nom ou le message est trop court.';
+            confirmation.classList.add('visible');
             submitButton.disabled = false;
             submitButton.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erreur: message trop court.';
             return;
         }
         
         try {
-            // Utilisation de la syntaxe V8
             await db.collection("testimonials").add({
                 name: name,
                 message: message,
-                // Assurez-vous que le Firestore.FieldValue est disponible
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 source: "formulaire_principal_pro_v2"
             });
 
             form.reset();
+            // Réinitialiser le style en cas d'erreur précédente
+            confirmation.style.backgroundColor = '#D4EDDA'; 
+            confirmation.style.color = 'var(--success-color)';
+            confirmation.innerHTML = '<i class="fas fa-certificate"></i> Votre message a été enregistré avec succès ! Merci de votre contribution au succès d\'Augustin.';
             confirmation.classList.add('visible'); // AFFICHAGE DE LA CONFIRMATION
             submitButton.innerHTML = '<i class="fas fa-thumbs-up"></i> **MESSAGE GRAVÉ !**';
             
@@ -557,20 +582,21 @@
 
         } catch (err) {
             console.error("Erreur lors de l'ajout du message à Firebase:", err);
-            // Utiliser le même élément de confirmation pour afficher l'échec
+            // Afficher l'échec de manière visible
             confirmation.style.backgroundColor = '#F8D7DA'; 
             confirmation.style.color = '#721C24';
-            confirmation.innerHTML = `<i class="fas fa-times-circle"></i> ÉCHEC. Vérifiez vos règles Firestore.`;
+            confirmation.innerHTML = `<i class="fas fa-times-circle"></i> ÉCHEC. (Erreur Firestore ou règles de sécurité).`;
             confirmation.classList.add('visible');
             
             submitButton.disabled = false;
             submitButton.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Échec : Réessayez';
-
+            
             setTimeout(() => {
                 confirmation.classList.remove('visible');
             }, 5000);
         }
     });
+});
 </script>
 </body>
 </html>
