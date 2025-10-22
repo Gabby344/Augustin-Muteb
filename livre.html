@@ -3,235 +3,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Livre d'Or Élégant – Félicitations Augustin Muteb Le Mwant</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<title>Rapport d'Étude des Vœux – Livre d'Or PRO Augustin Muteb</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
 
 <style>
-/* VARIABLES CSS (Thème Géologie : Bleu Azur/Gris Roche) */
+/* VARIABLES CSS (Thème Géologie PRO) */
 :root {
-    --primaire: #0077B6; /* Bleu Azur élégant */
-    --primaire-fonce: #005A8D;
-    --secondaire: #FFD700; /* Or subtil */
-    --fond-clair: #F5F5F5; /* Gris très clair (Pierre calcaire) */
-    --fond-sombre: #fff;
-    --texte: #2C3E50; /* Gris-Bleu foncé (Ardoise) */
-    --ombre-pro: 0 15px 40px rgba(0, 0, 0, 0.08);
-    --rayon-grand: 25px;
-    --transition-rapide: 0.35s ease-in-out;
+    --primaire: #004D99; /* Bleu Cobalt Profond (plus sérieux) */
+    --primaire-fonce: #003366;
+    --secondaire: #FFC300; /* Or vif pour l'accent */
+    --fond-clair: #F8F9FA; /* Blanc cassé (Papier à dessin technique) */
+    --fond-sombre: #fff;
+    --texte: #343A40; /* Gris Anthracite (Gravier fin) */
+    --ombre-pro: 0 15px 45px rgba(0, 0, 0, 0.15); /* Ombre plus nette */
+    --rayon-faible: 8px; /* Moins arrondi pour le côté rapport */
+    --transition-rapide: 0.35s ease-in-out;
 }
 
-/* ==================================== */
 /* 1. BARRE DE PROGRESSION DE LECTURE */
-/* ==================================== */
 #progressBar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 4px;
-    background-color: var(--primaire);
-    z-index: 1000;
-    transition: width 0.1s linear;
-    box-shadow: 0 0 10px var(--primaire);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 5px; /* Plus épais */
+    background-color: var(--secondaire); /* Couleur d'accent */
+    z-index: 1000;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px rgba(255, 195, 0, 0.5);
 }
 
 /* RESET et FOND */
 body {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--fond-clair);
-    color: var(--texte);
-    text-align: center;
-    line-height: 1.6;
-    padding-bottom: 50px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--fond-clair);
+    color: var(--texte);
+    text-align: center;
+    line-height: 1.6;
+    padding-bottom: 50px;
 }
 
 /* STRUCTURE PRINCIPALE */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* ==================================== */
-/* 2. EFFET DE PARALLAXE SUR LA PHOTO */
-/* ==================================== */
-.hero {
-    position: relative;
-    max-height: 400px;
-    overflow: hidden;
-    border-radius: var(--rayon-grand);
-    box-shadow: var(--ombre-pro);
-    margin-bottom: 50px;
-    margin-top: 30px;
-}
-.hero img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    filter: grayscale(30%) brightness(75%);
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transform: translateY(var(--y, 0)) scale(1.05);
-}
-.hero:hover img {
-    transform: translateY(var(--y, 0)) scale(1.08);
-    filter: grayscale(10%) brightness(80%);
+    max-width: 1300px; /* Plus large pour la grille pro */
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* HEADER/TITRES Personnalisés */
 header {
-    padding: 0;
-    margin-bottom: 30px;
-    background-color: transparent;
-    box-shadow: none;
-}
-.header-content {
-    background-color: var(--fond-sombre);
-    padding: 30px 0;
-    margin-top: 0;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background-color: var(--fond-sombre);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 50px;
+    padding: 40px 0 20px 0;
+    border-bottom: 5px solid var(--primaire); /* Ligne de démarcation forte */
 }
 
 h1 {
-    color: var(--primaire-fonce);
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5em;
-    margin: 0;
-    letter-spacing: 1px;
+    color: var(--primaire);
+    font-family: 'Playfair Display', serif;
+    font-size: 3.8em;
+    margin: 0;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+}
+h1 i {
+    color: var(--secondaire);
+    margin-right: 10px;
 }
 p.subtitle {
-    font-size: 1.3em;
-    color: #555;
-    margin-top: 10px;
+    font-size: 1.4em;
+    color: #5A6268;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+/* EFFET DE PARALLAXE SUR LA PHOTO */
+.hero {
+    /* Retiré le padding-top 30px pour le coller au haut de la page */
+    max-height: 350px;
+    margin-top: 0; 
+    margin-bottom: 40px;
+    border-radius: 0; /* Rendu moins 'carte' */
+    box-shadow: none;
+    border-bottom: 2px solid #EEE;
+}
+.hero img {
+    height: 350px;
+    filter: grayscale(10%) brightness(85%); /* Moins filtré */
 }
 
 /* GRILLE DES TÉMOIGNAGES */
 #temoignages-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+    display: grid;
+    /* 4 colonnes sur très grand écran, min 320px */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
 }
 
-/* ==================================== */
-/* 3. AMÉLIORATION DE LA CARTE (Thème Roche/Fossile) */
-/* ==================================== */
+/* 3. AMÉLIORATION DE LA CARTE (Rendu bloc-note / page de rapport) */
 .card {
-    background-color: var(--fond-sombre);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: var(--ombre-pro);
-    text-align: left;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.4s ease;
-    border-left: 5px solid var(--secondaire); /* Ligne Or */
-    border-bottom: 1px dashed #DDD; /* Simule une ligne de faille ou de stratification */
+    background-color: var(--fond-sombre);
+    padding: 35px;
+    border-radius: var(--rayon-faible);
+    box-shadow: var(--ombre-pro);
+    text-align: left;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.4s ease;
+    border: 1px solid #E0E0E0; /* Bordure fine pour le côté papier */
+    border-left: 7px solid var(--primaire); /* Ligne d'annotation Bleue */
 }
 .card:hover {
-    transform: translateY(-8px) rotateX(1deg);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.18);
-    border-left-color: var(--primaire);
+    transform: translateY(-5px); /* Moins d'inclinaison, plus de soulèvement */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    border-left-color: var(--secondaire);
 }
 
 .card-message {
-    font-style: italic;
-    font-size: 1.1em;
-    margin-bottom: 20px;
-    color: var(--texte);
-    border-bottom: 1px solid #EEE; /* Séparateur de message */
-    padding-bottom: 15px;
+    font-style: normal; /* Retiré l'italique pour le côté Pro/Rapport */
+    font-size: 1.05em;
+    margin-bottom: 25px;
+    color: var(--texte);
+    border-bottom: 1px dashed #CCC; /* Séparateur technique */
+    padding-bottom: 15px;
+    white-space: pre-wrap; /* Maintient les sauts de ligne du formulaire */
+}
+.card-message i.fa-quote-left {
+    color: var(--primaire); /* Couleur primaire sur la citation */
+    margin-right: 8px;
+    font-size: 1.2em;
 }
 
 .card-author {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    font-size: 0.95em;
+    font-size: 1em; /* Légèrement plus grand */
 }
 .card-author-name {
-    font-weight: 700;
-    color: var(--primaire-fonce);
+    font-weight: 700;
+    color: var(--primaire-fonce);
+    letter-spacing: 0.5px;
+}
+.card-author-name i {
+    color: var(--secondaire);
+    margin-right: 5px;
 }
 .card-timestamp {
-    font-size: 0.85em;
-    color: #777;
+    font-size: 0.9em;
+    color: #6C757D; /* Gris plus froid */
+    font-style: italic;
 }
 
 /* ÉTATS PARTICULIERS (CHARGEMENT, AUCUN MESSAGE) */
 #loading, #no-messages {
-    padding: 50px;
-    font-size: 1.2em;
-    color: #888;
-}
-#loading i {
-    color: var(--primaire);
-    margin-right: 10px;
+    background-color: var(--fond-sombre);
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: var(--rayon-faible);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid var(--secondaire);
 }
 
-/* BOUTON RETOUR et BOUTON IMPRIMER */
+/* BOUTON RETOUR et BOUTON IMPRIMER (Style plus technique) */
 .action-buttons {
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+    margin-top: 60px;
+    gap: 30px;
 }
 .action-buttons a, .action-buttons button {
-    color: var(--fond-sombre);
-    background-color: var(--primaire);
-    padding: 12px 25px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s, transform 0.3s;
-    border: none;
-    cursor: pointer;
-    font-size: 1em;
+    background-image: linear-gradient(135deg, var(--primaire), var(--primaire-fonce)); /* Dégradé Pro */
+    padding: 15px 30px;
+    border-radius: 50px; /* Boutons Pill */
+    font-weight: 700;
+    box-shadow: 0 8px 15px rgba(0, 77, 153, 0.3);
 }
 .action-buttons a:hover, .action-buttons button:hover {
-    background-color: var(--primaire-fonce);
-    transform: translateY(-2px);
+    background-color: var(--primaire-fonce);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 77, 153, 0.5);
 }
 
-/* OPTIMISATION POUR IMPRESSION */
+/* OPTIMISATION POUR IMPRESSION (Raffiné) */
 @media print {
-    .hero, header, .action-buttons, footer, #progressBar {
-        display: none !important;
-    }
-    body {
-        background-color: white !important;
-        color: black !important;
-    }
-    #temoignages-container {
-        display: block !important;
-        margin-top: 0;
-        gap: 0;
-    }
-    .card {
-        box-shadow: none !important;
-        border: 1px solid #ccc !important;
-        border-radius: 0 !important;
-        margin-bottom: 20px;
-        page-break-inside: avoid;
-        border-left: 5px solid #000 !important;
-        padding: 20px;
-    }
-    .card-message {
-        font-style: normal;
-        margin-bottom: 15px;
-    }
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .hero, header, .action-buttons, footer, #progressBar {
+        display: none !important;
+    }
+    .card {
+        border: 1px solid #AAA !important; /* Bordure d'impression plus sobre */
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin: 10px 0 !important;
+        padding: 15px !important;
+        border-left: 10px solid #000 !important; /* Ligne noire pour rapport */
+    }
+    .card:hover {
+        transform: none;
+    }
+    h1, .subtitle {
+        display: block !important;
+        text-align: left;
+        color: #000 !important;
+        margin: 5px 0;
+    }
 }
 
 /* MEDIA QUERIES */
 @media(max-width: 768px) {
-    h1 { font-size: 2.5em; }
-    .card { padding: 25px; }
-    .action-buttons { flex-direction: column; gap: 10px; }
+    h1 { font-size: 2.8em; }
+    .subtitle { font-size: 1.1em; }
+    .card { padding: 25px; }
+    #temoignages-container { gap: 20px; }
 }
 </style>
 </head>
@@ -239,49 +228,43 @@ p.subtitle {
 
 <div id="progressBar"></div>
 
-<div class="container">
-    
-    <section class="hero">
-                  <img id="hero-img" src="photo8.jpeg" alt="Portrait Professionnel d'Augustin Muteb, Géologue" loading="lazy"/>
-    </section>
-
+<div class="hero">
+    <img id="hero-img" src="photo8.jpeg" alt="Portrait Professionnel d'Augustin Muteb, Géologue" loading="lazy"/>
 </div>
 
 <header>
-    <div class="header-content">
-        <div class="container">
-                        <h1><i class="fas fa-gem"></i> Le Livre de la Roche Mère</h1>
-            <p class="subtitle">Témoignages et vœux sincères pour Augustin Muteb, nouveau Géologue</p>
-        </div>
+    <div class="container">
+        <h1><i class="fas fa-chart-line"></i> Rapport d'Étude des Vœux</h1>
+        <p class="subtitle">Analyse des témoignages et vœux sincères pour Augustin Muteb, Ingénieur Géologue.</p>
     </div>
 </header>
 
 <div class="container">
     
     <div id="loading">
-        <i class="fas fa-circle-notch fa-spin"></i> Sondage du sol pour les messages...
+        <i class="fas fa-circle-notch fa-spin"></i> **Traitement des données géologiques...**
     </div>
 
     <div id="temoignages-container">
             </div>
 
     <div id="no-messages" style="display: none;">
-        <i class="fas fa-box-open"></i> Le gisement de messages est vide. Soyez le premier à creuser !
+        <i class="fas fa-box-open"></i> Le gisement est inexploré. Soyez le premier à contribuer au rapport !
     </div>
 
     <div class="action-buttons">
         <button id="printButton" onclick="window.print()">
-            <i class="fas fa-print"></i> Imprimer le livre (Rapport d'étude)
+            <i class="fas fa-print"></i> Générer le **Rapport d'Impression**
         </button>
         <a href="index.html">
-            <i class="fas fa-arrow-left"></i> Retour au formulaire d'ajout
+            <i class="fas fa-pen-nib"></i> Rédiger un nouveau témoignage
         </a>
     </div>
 
 </div>
 
 <footer>
-    — Livre d’Or Augustin Muteb | Géologie U.K. —
+    — Rapport Final Augustin Muteb | Un Ingénieur Géologue Compétent —
 </footer>
 
 <script>
@@ -303,19 +286,19 @@ const loading = document.getElementById('loading');
 const noMessages = document.getElementById('no-messages');
 
 /**
- * Logique pour l'effet de Parallaxe (Maintenu)
+ * Logique pour l'effet de Parallaxe 
  */
 const heroImg = document.getElementById('hero-img');
 if (heroImg) {
     window.addEventListener('scroll', () => {
         const scrollPosition = window.scrollY;
-        const yOffset = Math.min(scrollPosition * 0.2, 20); 
+        const yOffset = Math.min(scrollPosition * 0.2, 30); // Légèrement augmenté
         heroImg.style.setProperty('--y', `${yOffset}px`);
     });
 }
 
 /**
- * Logique pour la Barre de Progression de Lecture (Maintenu)
+ * Logique pour la Barre de Progression de Lecture 
  */
 window.addEventListener('scroll', () => {
     const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -329,33 +312,34 @@ window.addEventListener('scroll', () => {
 function formatDate(timestamp) {
     if (!timestamp || !timestamp.toDate) return 'Date inconnue';
     const date = timestamp.toDate();
-    // Format plus compact
+    // Format professionnel et complet
     return date.toLocaleDateString('fr-FR', {
         year: 'numeric',
-        month: 'short',
+        month: 'long',
         day: '2-digit',
         hour: '2-digit',
-        minute: '2-digit'
+        minute: '2-digit',
+        second: '2-digit'
     });
 }
 
 function createCardHTML(data) {
     const formattedDate = formatDate(data.timestamp);
-    // Nettoyage de sécurité
+    // Sécurité renforcée
     const safeName = data.name ? data.name.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'Anonyme';
     const safeMessage = data.message ? data.message.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, '<br>') : 'Message vide.';
 
     return `
         <div class="card">
             <p class="card-message">
-                <i class="fas fa-quote-left" style="color: var(--secondaire); margin-right: 5px;"></i> ${safeMessage}
+                <i class="fas fa-quote-left"></i> ${safeMessage}
             </p>
             <div class="card-author">
                 <span class="card-author-name">
-                    <i class="fas fa-user-circle"></i> ${safeName}
+                    <i class="fas fa-user-tie"></i> ${safeName}
                 </span>
                 <span class="card-timestamp">
-                    <i class="far fa-clock"></i> ${formattedDate}
+                    <i class="fas fa-calendar-alt"></i> ${formattedDate}
                 </span>
             </div>
         </div>
@@ -389,7 +373,7 @@ async function loadTestimonials() {
         
     } catch (error) {
         console.error("Erreur lors du chargement des témoignages:", error);
-        loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Erreur de chargement des données.`;
+        loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Erreur critique lors du chargement des données. Veuillez vérifier la connexion Firebase.`;
     }
 }
 
