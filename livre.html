@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Livre d'Or Augustin Muteb Le Mwant</title>
+    <title>Rapport du Livre d'Or | Augustin Muteb Géologue</title>
     <meta name="description" content="Rapport complet et professionnel des témoignages et vœux laissés pour Augustin Muteb, Géologue diplômé.">
     
+    <!-- Fonts Google Professionnelles -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icônes FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Scripts Firebase V8 Compatibility (essentiels pour l'utilisation sans module) -->
+    <!-- Ils sont chargés en tête mais exécutés DEFERRED pour garantir la présence des objets -->
     <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js" defer></script>
 
@@ -18,13 +21,13 @@
         /* === 🧱 VARIABLES ET THÈMES PRO (Rapport Technique) 🧱 === */
         /* ======================================================= */
         :root {
-            --primaire: #004D99; 
+            --primaire: #004D99; /* Bleu Profond */
             --primaire-fonce: #003366;
-            --secondaire: #FFC300; 
-            --accent-rouge: #DC3545; 
-            --fond-clair: #F8F9FA; 
+            --secondaire: #FFC300; /* Or Vif */
+            --accent-rouge: #DC3545; /* Rouge pour Erreur/Attention */
+            --fond-clair: #F8F9FA; /* Fond léger */
             --fond-sombre: #fff;
-            --texte: #343A40; 
+            --texte: #343A40; /* Texte Sombre */
             --ombre-pro: 0 15px 45px rgba(0, 0, 0, 0.15); 
             --rayon-faible: 8px; 
             --transition-rapide: 0.35s ease-in-out;
@@ -143,7 +146,7 @@
             color: var(--texte);
             border-bottom: 2px solid #EEE; 
             padding-bottom: 20px;
-            white-space: pre-wrap;
+            white-space: pre-wrap; /* Pour conserver les sauts de ligne */
         }
         .card-message i.fa-quote-left {
             color: var(--primaire-fonce); 
@@ -168,7 +171,7 @@
             font-style: italic;
         }
 
-        /* ÉTATS PARTICULIERS */
+        /* ÉTATS PARTICULIERS (Chargement/Erreur) */
         #loading, #no-messages {
             background-color: var(--fond-sombre);
             margin: 50px auto;
@@ -177,8 +180,14 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             border-left: 5px solid var(--accent-rouge); 
             font-size: 1.3em;
+            color: var(--texte);
         }
         #loading i.fa-spin { color: var(--primaire); margin-right: 10px; }
+        #no-messages {
+            border-left: 5px solid var(--secondaire);
+            color: var(--primaire);
+        }
+
 
         /* BOUTONS D'ACTION (Style CTA Pro) */
         .action-buttons {
@@ -265,14 +274,8 @@
                 border-radius: 0 !important;
                 margin: 15px 0 !important;
                 padding: 15px !important;
-                border-left: 10px solid #000 !important; 
+                border-left: 10px solid #000 !important; /* Bordure noire pour impression */
                 page-break-inside: avoid; 
-            }
-            .card:hover {
-                transform: none;
-            }
-            @page {
-                @top-center { content: "Rapport d'Étude des Vœux | Augustin Muteb Géologue"; }
             }
         }
 
@@ -292,21 +295,21 @@
 <div id="progressBar"></div>
 
 <div class="hero">
-    <!-- VÉRIFIEZ LE CHEMIN ET L'EXTENSION DE CETTE PHOTO -->
+    <!-- Image de fond avec Parallaxe. Utilisez une photo professionnelle ici. -->
     <img id="hero-img" src="photo8.jpeg" alt="Portrait Professionnel d'Augustin Muteb, Géologue" loading="lazy" style="transform: translateY(var(--y, 0));" onerror="this.src='https://placehold.co/1400x400/004D99/FFFFFF?text=Photo+Professionnelle'"/>
 </div>
 
 <header>
     <div class="container">
         <h1><i class="fas fa-chart-line"></i> Rapport du Livre d'Or</h1>
-        <p class="subtitle">Tous les messages, témoignages et vœux sincères pour Augustin Muteb, Géologue.</p>
+        <p class="subtitle">Analyse professionnelle des témoignages et vœux sincères pour Augustin Muteb, Ingénieur Géologue.</p>
     </div>
 </header>
 
 <div class="container">
     
     <div id="loading">
-        <i class="fas fa-circle-notch fa-spin"></i>  Chargement des données du gisement de vœux...
+        <i class="fas fa-circle-notch fa-spin"></i>  Connexion au gisement de données...
     </div>
 
     <div id="temoignages-container">
@@ -329,161 +332,164 @@
 
 <footer>
     <div class="container">
-    | Réalisé par Gabby Umba 
+    | Réalisé par Gabby Umba - Contact : +243 99 72 27 819
     </div>
 </footer>
 
 <script>
-// Configuration Firebase MISE À JOUR avec vos données
-const firebaseConfig={
-    apiKey:"AIzaSyAiMnvIMBqn2VqSQsFpb-Ajx5VORVd0JoA",
-    authDomain:"danicakakudji.firebaseapp.com",
-    projectId:"danicakakudji",
-    storageBucket:"danicakakudji.firebasestorage.app",
-    messagingSenderId:"409346091245",
-    appId:"1:409346091245:web:6674becbc81d97c292c4e4"
-};
-
-// --- 1. INITIALISATION FIREBASE ---
-if (typeof firebase !== 'undefined' && typeof firebase.apps !== 'undefined' && !firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
-const db = (typeof firebase !== 'undefined' && firebase.firestore) ? firebase.firestore() : null;
-
-if (!db) {
-    document.getElementById('loading').innerHTML = `
-        <i class="fas fa-exclamation-triangle"></i> ERREUR : La connexion à la base de données a échoué.
-    `;
-}
-
-// Références DOM
-const container = document.getElementById('temoignages-container');
-const loading = document.getElementById('loading');
-const noMessages = document.getElementById('no-messages');
-const heroImg = document.getElementById('hero-img');
-
-/* --- 2. UX: LOGIQUE DE PARALLAXE --- */
-if (heroImg) {
-    window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        const yOffset = Math.min(scrollPosition * 0.25, 40); 
-        heroImg.style.setProperty('--y', `${yOffset}px`); 
-    });
-}
-
-/* --- 3. UX: LOGIQUE DE BARRE DE PROGRESSION --- */
-window.addEventListener('scroll', () => {
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPosition = window.scrollY;
-    const progress = (scrollPosition / totalHeight) * 100;
-    document.getElementById('progressBar').style.width = `${progress}%`;
-});
-
-
-/* --- 4. FIREBASE et AFFICHAGE --- */
-function formatDate(timestamp) {
-    if (!timestamp || !timestamp.toDate) return 'Date inconnue';
-    const date = timestamp.toDate();
-    // Format professionnel complet
-    return date.toLocaleDateString('fr-FR', {
-        year: 'numeric',
-        month: 'long',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-    });
-}
-
-/**
- * Crée le HTML de la carte avec sanitation (XSS) et gestion des sauts de ligne.
- */
-function createCardHTML(data) {
-    const formattedDate = formatDate(data.timestamp);
-    
-    // SANITATION: Nettoyer le contenu
-    const sanitize = (str) => {
-        if (!str) return '';
-        return str.toString().replace(/&/g, "&amp;")
-                 .replace(/</g, "&lt;")
-                 .replace(/>/g, "&gt;")
-                 .replace(/"/g, "&quot;")
-                 .replace(/'/g, "&#039;");
+document.addEventListener('DOMContentLoaded', () => {
+    // Configuration Firebase - VEUILLEZ REMPLACER CES VALEURS PAR VOS PROPRES CLÉS
+    const firebaseConfig={
+        apiKey:"AIzaSyAiMnvIMBqn2VqSQsFpb-Ajx5VORVd0JoA",
+        authDomain:"danicakakudji.firebaseapp.com",
+        projectId:"danicakakudji",
+        storageBucket:"danicakakudji.firebasestorage.app",
+        messagingSenderId:"409346091245",
+        appId:"1:409346091245:web:6674becbc81d97c292c4e4"
     };
 
-    const safeName = sanitize(data.name) || 'Anonyme';
-    // Remplacer les sauts de ligne par <br> pour l'affichage
-    const safeMessage = sanitize(data.message).replace(/\n/g, '<br>') || 'Message vide.';
+    // --- 1. INITIALISATION FIREBASE SÉCURISÉE ---
+    let db = null;
+    let authError = false;
 
-    return `
-        <div class="card">
-            <p class="card-message">
-                <i class="fas fa-quote-left"></i> ${safeMessage}
-            </p>
-            <div class="card-author">
-                <span class="card-author-name">
-                    <i class="fas fa-user-tie"></i> ${safeName}
-                </span>
-                <span class="card-timestamp">
-                    <i class="fas fa-calendar-alt"></i> ${formattedDate}
-                </span>
-            </div>
-        </div>
-    `;
-}
-
-function loadTestimonials() {
-    if (!db) return; // Ne pas continuer si la DB n'est pas initialisée
-
-    loading.style.display = 'block';
-    container.innerHTML = '';
-    noMessages.style.display = 'none';
-
-    // Utilisation de onSnapshot pour la mise à jour en temps réel
-    db.collection("testimonials")
-        .orderBy("timestamp", "desc") 
-        .onSnapshot((snapshot) => {
-            loading.style.display = 'none';
-
-            if (snapshot.empty) {
-                container.innerHTML = '';
-                noMessages.style.display = 'block';
-                return;
+    if (typeof firebase !== 'undefined' && typeof firebase.apps !== 'undefined') {
+        try {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
             }
+            db = firebase.firestore();
+            console.log("Firebase et Firestore initialisés avec succès dans livre.html.");
+        } catch (e) {
+            console.error("Erreur d'initialisation de Firebase dans livre.html:", e);
+            authError = true;
+        }
+    } else {
+        console.error("ERREUR CRITIQUE: L'objet 'firebase' n'est pas défini. Les scripts SDK n'ont pas été chargés.");
+        authError = true;
+    }
 
-            let cardsHTML = '';
-            snapshot.docs.forEach(doc => {
-                const data = doc.data();
-                cardsHTML += createCardHTML(data);
-            });
 
-            container.innerHTML = cardsHTML;
-        }, (error) => {
-            console.error("Erreur d'écoute de Firebase:", error);
-            loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ERREUR : Échec de la lecture des données. Vérifiez les règles de sécurité.`;
-            loading.style.color = 'var(--accent-rouge)';
-            loading.style.display = 'block';
+    // Références DOM
+    const container = document.getElementById('temoignages-container');
+    const loading = document.getElementById('loading');
+    const noMessages = document.getElementById('no-messages');
+    const heroImg = document.getElementById('hero-img');
+
+
+    /* --- 2. UX: LOGIQUE DE PARALLAXE --- */
+    if (heroImg) {
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            // Déplacement maximal de l'image : 40px
+            const yOffset = Math.min(scrollPosition * 0.25, 40); 
+            heroImg.style.setProperty('--y', `${yOffset}px`); 
         });
-}
+    }
 
-document.addEventListener('DOMContentLoaded', loadTestimonials);
+    /* --- 3. UX: LOGIQUE DE BARRE DE PROGRESSION --- */
+    window.addEventListener('scroll', () => {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPosition = window.scrollY;
+        // Empêche la division par zéro si la page est petite
+        const progress = totalHeight > 0 ? (scrollPosition / totalHeight) * 100 : 100;
+        document.getElementById('progressBar').style.width = `${progress}%`;
+    });
+
+
+    /* --- 4. FIREBASE et AFFICHAGE --- */
+    function formatDate(timestamp) {
+        if (!timestamp || !timestamp.toDate) return 'Date inconnue';
+        const date = timestamp.toDate();
+        // Format professionnel complet pour le Congo (fr-CD) ou par défaut fr-FR
+        return date.toLocaleDateString('fr-CD', {
+            year: 'numeric',
+            month: 'long',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            timeZoneName: 'short'
+        });
+    }
+
+    /**
+     * Crée le HTML de la carte avec sanitation (XSS) et gestion des sauts de ligne.
+     */
+    function createCardHTML(data) {
+        const formattedDate = formatDate(data.timestamp);
+        
+        // SANITATION: Nettoyer le contenu pour éviter les injections XSS
+        const sanitize = (str) => {
+            if (!str) return '';
+            // Créer un élément temporaire pour encoder le HTML
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        };
+
+        const safeName = sanitize(data.name) || 'Anonyme';
+        // Remplacer les sauts de ligne (\n) par <br> après la sanitation
+        const safeMessage = sanitize(data.message).replace(/\n/g, '<br>') || 'Message vide.';
+
+        return `
+            <div class="card">
+                <p class="card-message">
+                    <i class="fas fa-quote-left"></i> ${safeMessage}
+                </p>
+                <div class="card-author">
+                    <span class="card-author-name">
+                        <i class="fas fa-user-tie"></i> ${safeName}
+                    </span>
+                    <span class="card-timestamp">
+                        <i class="fas fa-calendar-alt"></i> Publié le ${formattedDate}
+                    </span>
+                </div>
+            </div>
+        `;
+    }
+
+    function loadTestimonials() {
+        if (!db) {
+            loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ERREUR : Base de données inaccessible. Vérifiez la configuration.`;
+            loading.style.color = 'var(--accent-rouge)';
+            loading.style.borderLeftColor = 'var(--accent-rouge)';
+            return;
+        }
+
+        loading.style.display = 'block';
+        container.innerHTML = '';
+        noMessages.style.display = 'none';
+
+        // Utilisation de onSnapshot pour la mise à jour en temps réel
+        // Tri par 'timestamp' décroissant (les plus récents en premier)
+        db.collection("testimonials")
+            .orderBy("timestamp", "desc") 
+            .onSnapshot((snapshot) => {
+                loading.style.display = 'none';
+
+                if (snapshot.empty) {
+                    container.innerHTML = '';
+                    noMessages.style.display = 'block';
+                    return;
+                }
+
+                let cardsHTML = '';
+                snapshot.docs.forEach(doc => {
+                    const data = doc.data();
+                    cardsHTML += createCardHTML(data);
+                });
+
+                container.innerHTML = cardsHTML;
+            }, (error) => {
+                console.error("Erreur d'écoute de Firebase:", error);
+                loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ERREUR : Échec de la lecture des données. Vérifiez vos règles de sécurité Firestore.`;
+                loading.style.color = 'var(--accent-rouge)';
+                loading.style.borderLeftColor = 'var(--accent-rouge)';
+                loading.style.display = 'block';
+            });
+    }
+
+    loadTestimonials();
+});
 </script>
 </body>
 </html>
-```
-***
-
-**Étapes finales importantes :**
-
-1.  **Vérifiez à nouveau vos règles Firestore.** Dans votre console Firebase > Firestore > Règles, assurez-vous qu'elles permettent la lecture et l'écriture, comme ceci :
-
-    ```firestore
-    rules_version = '2';
-    service cloud.firestore {
-      match /databases/{database}/documents {
-        match /{document=**} {
-          allow read, write: if true;
-        }
-      }
-    }
-    
