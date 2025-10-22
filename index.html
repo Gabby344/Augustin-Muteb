@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
+    <!-- Scripts Firebase V8 Compatibility (essentiels pour l'utilisation sans module) -->
     <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js" defer></script>
 
@@ -218,7 +219,6 @@
             font-size: 1.2em;
             letter-spacing: 0.5px;
         }
-        /* CORRECTION : L'input du nom a été corrigé pour assurer l'exécution du JS */
         input[type="text"], textarea { 
             width: 100%;
             padding: 20px; 
@@ -398,7 +398,7 @@
 <header>
     <div class="container">
         <a href="#" class="header-logo">
-            <i class="fas fa-hammer" style="color: var(--secondaire);"></i> Bravo Augustin Muteb Le Mwant
+            <i class="fas fa-hammer" style="color: var(--secondaire);"></i> Bravo Augustin Muteb Le Mwant 
         </a>
     </div>
 </header>
@@ -406,23 +406,24 @@
 <main class="container">
     <section class="hero">
         <div id="carousel">
-            <div class="carousel-slide active"><img src="photo1.jpg" alt="Augustin Muteb Diplôme" loading="lazy"/></div>
-            <div class="carousel-slide"><img src="photo2.jpg" alt="Cérémonie Université de Kolwezi" loading="lazy"/></div>
-            <div class="carousel-slide"><img src="photo3.jpeg" alt="Augustin Muteb avec ses professeurs" loading="lazy"/></div>
-            <div class="carousel-slide"><img src="photo4.jpeg" alt="Groupe d'amis Géologues" loading="lazy"/></div>
-            <div class="carousel-slide"><img src="photo5.jpeg" alt="Groupe d'amis Géologues" loading="lazy"/></div>
-            <div class="carousel-slide"><img src="photo6.jpeg" alt="Groupe d'amis Géologues" loading="lazy"/></div>
-            <div class="carousel-slide"><img src="photo7.jpeg" alt="Groupe d'amis Géologues" loading="lazy"/></div>
+            <!-- VÉRIFIEZ LE CHEMIN ET L'EXTENSION DE CES PHOTOS (e.g. photo1.jpeg ou photo1.jpg) -->
+            <div class="carousel-slide active"><img src="photo1.jpg" alt="Augustin Muteb Diplôme" loading="lazy" onerror="this.src='https://placehold.co/1200x550/0077B6/FFFFFF?text=Photo+1'"/></div>
+            <div class="carousel-slide"><img src="photo2.jpg" alt="Cérémonie Université de Kolwezi" loading="lazy" onerror="this.src='https://placehold.co/1200x550/5B473D/FFFFFF?text=Photo+2'"/></div>
+            <div class="carousel-slide"><img src="photo3.jpeg" alt="Augustin Muteb avec ses professeurs" loading="lazy" onerror="this.src='https://placehold.co/1200x550/FFC300/333333?text=Photo+3'"/></div>
+            <div class="carousel-slide"><img src="photo4.jpeg" alt="Groupe d'amis Géologues" loading="lazy" onerror="this.src='https://placehold.co/1200x550/005A8D/FFFFFF?text=Photo+4'"/></div>
+            <div class="carousel-slide"><img src="photo5.jpeg" alt="Groupe d'amis Géologues" loading="lazy" onerror="this.src='https://placehold.co/1200x550/0077B6/FFFFFF?text=Photo+5'"/></div>
+            <div class="carousel-slide"><img src="photo6.jpeg" alt="Groupe d'amis Géologues" loading="lazy" onerror="this.src='https://placehold.co/1200x550/5B473D/FFFFFF?text=Photo+6'"/></div>
+            <div class="carousel-slide"><img src="photo7.jpeg" alt="Groupe d'amis Géologues" loading="lazy" onerror="this.src='https://placehold.co/1200x550/FFC300/333333?text=Photo+7'"/></div>
         </div>
         <div class="hero-text">
             <h1><i class="fas fa-mountain"></i> Augustin Muteb</h1>
-            <p>« L'avenir est construit sur une base solide. Félicitations, Géologue ! »</p>
+            <p>« L'avenir est construit sur une base solide. Félicitations, cher Géologue ! »</p>
             <p class="diplome-info">Diplômé de l'Université de Kolwezi</p>
         </div>
     </section>
 
     <section class="guestbook-section">
-        <h2 class="section-title"><i class="fas fa-scroll"></i> Le Registre des Vœux</h2>
+        <h2 class="section-title"><i class="fas fa-scroll"></i> Le Registre de tous vos Vœux</h2>
         <p class="intro">
             Transmettez vos vœux sincères pour le début d'une carrière prometteuse. Votre message est un encouragement précieux pour le cheminement professionnel d'Augustin. Partagez votre soutien avec joie et amour.
         </p>
@@ -431,12 +432,12 @@
             <form id="formTemoignage">
                 <div class="input-group">
                     <label for="nom">Votre Prenom et Nom</label>
-                    <input type="text" id="nom" placeholder="Ex :Arsene Mwamba"75"/>
+                    <input type="text" id="nom" placeholder="Exemple :Arsene Mwamba" required maxlength="75"/>
                 </div>
                 
                 <div class="input-group">
-                    <label for="message">Votre message de félicitations :</label>
-                    <textarea id="message" rows="7" placeholder="Cher Augustin, felicitations et plein succes dans cette nouvelle étape..." required minlength="20" maxlength="800"></textarea>
+                    <label for="message">Votre message de félicitations:</label>
+                    <textarea id="message" rows="7" placeholder="Cher Augustin, je te souhaite plein succès dans cette nouvelle étape de ta vie..." required minlength="20" maxlength="800"></textarea>
                 </div>
 
                 <button type="submit">
@@ -451,7 +452,7 @@
     
     <div class="link-livre">
         <a href="livre.html" class="cta-livre">
-            <i class="fas fa-book-open"></i> Accéder au Livre d’Or 
+            <i class="fas fa-book-open"></i> Accéder au Livre d’Or Complet
         </a>
     </div>
 
@@ -459,29 +460,35 @@
 
 <footer>
     <div class="container">
-        <p>Conception & Développement: Gabby Umba</p>
+        <p> Conception & Développement: Gabby Umba</p>
         <p>Contact (WhatsApp) : <a href="Whatsapp:+243997227819">+243 99 72 27 819</a> | 
-           <a href=">gabbyumba344@gmail.com">gabbyumba344@gmail.com</a></p>
-        <p style="margin-top: 15px; font-size: 0.8em; opacity: 0.7;">&copy; 2025 The Gift Of Words. Tous droits réservés.</p>
+           <a href="gabbyumba344@gmail.com">gabbyumba344@gmail.com</a></p>
+        <p style="margin-top: 15px; font-size: 0.8em; opacity: 0.7;">&copy; 2025 Livre d'Or Professionnel. Tous droits réservés.</p>
     </div>
 </footer>
 
 <script>
-    // Configuration Firebase (Doit correspondre à vos clés)
+    // Configuration Firebase MISE À JOUR avec vos données
     const firebaseConfig={
-        apiKey:"AIzaSyCQWUPt2d5RaPvPfSqgi4oU-VxMpL6STvQ",
-        authDomain:"shekinahmukeni-74b9d.firebaseapp.com",
-        projectId:"shekinahmukeni-74b9d",
-        storageBucket:"shekinahmukeni-74b9d.appspot.com",
-        messagingSenderId:"351153147633",
-        appId:"1:351153147633:web:c82d85f1ad9a79d6ed6350"
+        apiKey:"AIzaSyAiMnvIMBqn2VqSQsFpb-Ajx5VORVd0JoA",
+        authDomain:"danicakakudji.firebaseapp.com",
+        projectId:"danicakakudji",
+        storageBucket:"danicakakudji.firebasestorage.app",
+        messagingSenderId:"409346091245",
+        appId:"1:409346091245:web:6674becbc81d97c292c4e4"
     };
 
     // --- 1. INITIALISATION FIREBASE ---
-    if (!firebase.apps.length) {
+    // Utilise la méthode V8/Compat pour l'initialisation
+    if (typeof firebase !== 'undefined' && typeof firebase.apps !== 'undefined' && !firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
-    const db = firebase.firestore();
+    // Vérifie si Firestore est disponible
+    const db = (typeof firebase !== 'undefined' && firebase.firestore) ? firebase.firestore() : null;
+
+    if (!db) {
+        console.error("ERREUR CRITIQUE: Firestore n'est pas chargé. Vérifiez les scripts de chargement Firebase.");
+    }
 
     // Références DOM
     const form = document.getElementById('formTemoignage');
@@ -499,20 +506,21 @@
         slides[currentSlide].classList.add('active');
     }
 
+    // Démarrage du carrousel uniquement s'il y a des slides
     if (slides.length > 1) {
-        // Démarre l'intervalle de défilement automatique
+        slides[0].classList.add('active'); // Assure que la première est active
         setInterval(nextSlide, intervalTime);
     }
-    // Assure que la première est active (même si le JS ne s'exécute pas immédiatement)
-    if (slides.length > 0) {
-        slides[0].classList.add('active');
-    }
-
 
     // --- 3. GESTION DU FORMULAIRE FIREBASE ---
     form.addEventListener('submit', async e => {
         e.preventDefault();
         
+        if (!db) {
+            alert("Erreur: Le service de base de données est indisponible.");
+            return;
+        }
+
         submitButton.disabled = true;
         submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> **ENVOI EN COURS...**';
 
@@ -520,22 +528,25 @@
         const message = document.getElementById('message').value.trim();
 
         if (name.length < 2 || message.length < 20) { 
-            alert("Erreur: Votre nom/titre (min. 2 caractères) ou votre message (min. 20 caractères) est trop court.");
+             // Utiliser le message de confirmation pour l'erreur au lieu d'alert()
+            confirmation.classList.remove('visible'); // Cacher si c'est déjà visible
             submitButton.disabled = false;
-            submitButton.innerHTML = '<i class="fas fa-check-circle"></i> Finaliser et **Graver** mon message de soutien';
+            submitButton.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erreur: message trop court.';
             return;
         }
         
         try {
+            // Utilisation de la syntaxe V8
             await db.collection("testimonials").add({
                 name: name,
                 message: message,
+                // Assurez-vous que le Firestore.FieldValue est disponible
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 source: "formulaire_principal_pro_v2"
             });
 
             form.reset();
-            confirmation.classList.add('visible');
+            confirmation.classList.add('visible'); // AFFICHAGE DE LA CONFIRMATION
             submitButton.innerHTML = '<i class="fas fa-thumbs-up"></i> **MESSAGE GRAVÉ !**';
             
             setTimeout(() => {
@@ -546,10 +557,18 @@
 
         } catch (err) {
             console.error("Erreur lors de l'ajout du message à Firebase:", err);
-            alert("❌ ERREUR TECHNIQUE: Le message n'a pas pu être enregistré (Firebase).");
+            // Utiliser le même élément de confirmation pour afficher l'échec
+            confirmation.style.backgroundColor = '#F8D7DA'; 
+            confirmation.style.color = '#721C24';
+            confirmation.innerHTML = `<i class="fas fa-times-circle"></i> ÉCHEC. Vérifiez vos règles Firestore.`;
+            confirmation.classList.add('visible');
             
             submitButton.disabled = false;
             submitButton.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Échec : Réessayez';
+
+            setTimeout(() => {
+                confirmation.classList.remove('visible');
+            }, 5000);
         }
     });
 </script>
