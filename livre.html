@@ -11,196 +11,216 @@
 <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
 
 <style>
-/* VARIABLES CSS (Thème Géologie PRO) - Cohérent avec la palette professionnelle */
+/* VARIABLES CSS (Thème Géologie PRO) */
 :root {
-    --primaire: #004D99; /* Bleu Cobalt Profond (plus sérieux) */
-    --primaire-fonce: #003366;
-    --secondaire: #FFC300; /* Or vif pour l'accent */
-    --fond-clair: #F8F9FA; /* Blanc cassé (Papier à dessin technique) */
-    --fond-sombre: #fff;
-    --texte: #343A40; /* Gris Anthracite (Gravier fin) */
-    --ombre-pro: 0 15px 45px rgba(0, 0, 0, 0.15); 
-    --rayon-faible: 8px; 
-    --transition-rapide: 0.35s ease-in-out;
+    --primaire: #004D99; /* Bleu Cobalt Profond (plus sérieux) */
+    --primaire-fonce: #003366;
+    --secondaire: #FFC300; /* Or vif pour l'accent */
+    --fond-clair: #F8F9FA; /* Blanc cassé (Papier à dessin technique) */
+    --fond-sombre: #fff;
+    --texte: #343A40; /* Gris Anthracite (Gravier fin) */
+    --ombre-pro: 0 15px 45px rgba(0, 0, 0, 0.15); /* Ombre plus nette */
+    --rayon-faible: 8px; /* Moins arrondi pour le côté rapport */
+    --transition-rapide: 0.35s ease-in-out;
 }
 
-/* BARRE DE PROGRESSION DE LECTURE */
+/* 1. BARRE DE PROGRESSION DE LECTURE */
 #progressBar {
-    position: fixed; top: 0; left: 0; width: 0%; height: 5px; 
-    background-color: var(--secondaire); 
-    z-index: 1000;
-    transition: width 0.1s linear;
-    box-shadow: 0 0 10px rgba(255, 195, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 5px; /* Plus épais */
+    background-color: var(--secondaire); /* Couleur d'accent */
+    z-index: 1000;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px rgba(255, 195, 0, 0.5);
 }
 
 /* RESET et FOND */
 body {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0; padding: 0;
-    background-color: var(--fond-clair);
-    color: var(--texte);
-    text-align: center; line-height: 1.6;
-    padding-bottom: 50px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--fond-clair);
+    color: var(--texte);
+    text-align: center;
+    line-height: 1.6;
+    padding-bottom: 50px;
 }
 
 /* STRUCTURE PRINCIPALE */
 .container {
-    max-width: 1300px; 
-    margin: 0 auto;
-    padding: 0 20px;
+    max-width: 1300px; /* Plus large pour la grille pro */
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* HEADER/TITRES Personnalisés */
 header {
-    background-color: var(--fond-sombre);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    margin-bottom: 50px;
-    padding: 40px 0 20px 0;
-    border-bottom: 5px solid var(--primaire); 
+    background-color: var(--fond-sombre);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 50px;
+    padding: 40px 0 20px 0;
+    border-bottom: 5px solid var(--primaire); /* Ligne de démarcation forte */
 }
 
 h1 {
-    color: var(--primaire);
-    font-family: 'Playfair Display', serif;
-    font-size: 3.8em;
-    margin: 0;
-    letter-spacing: 2px;
-    position: relative;
-    display: inline-block;
+    color: var(--primaire);
+    font-family: 'Playfair Display', serif;
+    font-size: 3.8em;
+    margin: 0;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
 }
 h1 i {
-    color: var(--secondaire);
-    margin-right: 10px;
+    color: var(--secondaire);
+    margin-right: 10px;
 }
 p.subtitle {
-    font-size: 1.4em;
-    color: #5A6268;
-    margin-top: 15px;
-    font-weight: 500;
+    font-size: 1.4em;
+    color: #5A6268;
+    margin-top: 15px;
+    font-weight: 500;
 }
 
 /* EFFET DE PARALLAXE SUR LA PHOTO */
 .hero {
-    max-height: 350px;
-    margin-top: 0; 
-    margin-bottom: 40px;
-    border-radius: 0;
-    box-shadow: none;
-    border-bottom: 2px solid #EEE;
-    overflow: hidden;
-    position: relative;
+    /* Retiré le padding-top 30px pour le coller au haut de la page */
+    max-height: 350px;
+    margin-top: 0; 
+    margin-bottom: 40px;
+    border-radius: 0; /* Rendu moins 'carte' */
+    box-shadow: none;
+    border-bottom: 2px solid #EEE;
 }
 .hero img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    filter: grayscale(0%) brightness(100%);
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transform: translateY(var(--y, 0)) scale(1.05);
+    height: 350px;
+    filter: grayscale(10%) brightness(85%); /* Moins filtré */
 }
 
 /* GRILLE DES TÉMOIGNAGES */
 #temoignages-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+    display: grid;
+    /* 4 colonnes sur très grand écran, min 320px */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
 }
 
-/* AMÉLIORATION DE LA CARTE (Rendu bloc-note / page de rapport) */
+/* 3. AMÉLIORATION DE LA CARTE (Rendu bloc-note / page de rapport) */
 .card {
-    background-color: var(--fond-sombre);
-    padding: 35px;
-    border-radius: var(--rayon-faible);
-    box-shadow: var(--ombre-pro);
-    text-align: left;
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.4s ease;
-    border: 1px solid #E0E0E0; 
-    border-left: 7px solid var(--primaire); /* Ligne d'annotation Bleue */
+    background-color: var(--fond-sombre);
+    padding: 35px;
+    border-radius: var(--rayon-faible);
+    box-shadow: var(--ombre-pro);
+    text-align: left;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.4s ease;
+    border: 1px solid #E0E0E0; /* Bordure fine pour le côté papier */
+    border-left: 7px solid var(--primaire); /* Ligne d'annotation Bleue */
 }
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-    border-left-color: var(--secondaire);
+    transform: translateY(-5px); /* Moins d'inclinaison, plus de soulèvement */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    border-left-color: var(--secondaire);
 }
 
 .card-message {
-    font-style: normal; 
-    font-size: 1.05em;
-    margin-bottom: 25px;
-    color: var(--texte);
-    border-bottom: 1px dashed #CCC; 
-    padding-bottom: 15px;
-    white-space: pre-wrap;
+    font-style: normal; /* Retiré l'italique pour le côté Pro/Rapport */
+    font-size: 1.05em;
+    margin-bottom: 25px;
+    color: var(--texte);
+    border-bottom: 1px dashed #CCC; /* Séparateur technique */
+    padding-bottom: 15px;
+    white-space: pre-wrap; /* Maintient les sauts de ligne du formulaire */
 }
 .card-message i.fa-quote-left {
-    color: var(--primaire); 
-    margin-right: 8px;
-    font-size: 1.2em;
+    color: var(--primaire); /* Couleur primaire sur la citation */
+    margin-right: 8px;
+    font-size: 1.2em;
 }
 
+.card-author {
+    font-size: 1em; /* Légèrement plus grand */
+}
 .card-author-name {
-    font-weight: 700;
-    color: var(--primaire-fonce);
-    letter-spacing: 0.5px;
+    font-weight: 700;
+    color: var(--primaire-fonce);
+    letter-spacing: 0.5px;
 }
 .card-author-name i {
-    color: var(--secondaire);
-    margin-right: 5px;
+    color: var(--secondaire);
+    margin-right: 5px;
+}
+.card-timestamp {
+    font-size: 0.9em;
+    color: #6C757D; /* Gris plus froid */
+    font-style: italic;
 }
 
 /* ÉTATS PARTICULIERS (CHARGEMENT, AUCUN MESSAGE) */
 #loading, #no-messages {
-    background-color: var(--fond-sombre);
-    margin: 50px auto;
-    padding: 40px;
-    border-radius: var(--rayon-faible);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    border-left: 5px solid var(--secondaire);
+    background-color: var(--fond-sombre);
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: var(--rayon-faible);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid var(--secondaire);
 }
 
 /* BOUTON RETOUR et BOUTON IMPRIMER (Style plus technique) */
 .action-buttons {
-    margin-top: 60px;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+    margin-top: 60px;
+    gap: 30px;
 }
 .action-buttons a, .action-buttons button {
-    color: var(--fond-sombre);
-    background-image: linear-gradient(135deg, var(--primaire), var(--primaire-fonce)); 
-    padding: 15px 30px;
-    border-radius: 50px; 
-    font-weight: 700;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1em;
-    box-shadow: 0 8px 15px rgba(0, 77, 153, 0.3);
-    transition: all 0.3s;
+    background-image: linear-gradient(135deg, var(--primaire), var(--primaire-fonce)); /* Dégradé Pro */
+    padding: 15px 30px;
+    border-radius: 50px; /* Boutons Pill */
+    font-weight: 700;
+    box-shadow: 0 8px 15px rgba(0, 77, 153, 0.3);
 }
 .action-buttons a:hover, .action-buttons button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 77, 153, 0.5);
+    background-color: var(--primaire-fonce);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 77, 153, 0.5);
 }
 
-/* OPTIMISATION POUR IMPRESSION */
+/* OPTIMISATION POUR IMPRESSION (Raffiné) */
 @media print {
-    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .hero, header, .action-buttons, footer, #progressBar { display: none !important; }
-    .card {
-        border: 1px solid #AAA !important; 
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        margin: 10px 0 !important;
-        padding: 15px !important;
-        border-left: 10px solid #000 !important; 
-    }
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .hero, header, .action-buttons, footer, #progressBar {
+        display: none !important;
+    }
+    .card {
+        border: 1px solid #AAA !important; /* Bordure d'impression plus sobre */
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin: 10px 0 !important;
+        padding: 15px !important;
+        border-left: 10px solid #000 !important; /* Ligne noire pour rapport */
+    }
+    .card:hover {
+        transform: none;
+    }
+    h1, .subtitle {
+        display: block !important;
+        text-align: left;
+        color: #000 !important;
+        margin: 5px 0;
+    }
 }
 
 /* MEDIA QUERIES */
 @media(max-width: 768px) {
-    h1 { font-size: 2.8em; }
+    h1 { font-size: 2.8em; }
+    .subtitle { font-size: 1.1em; }
+    .card { padding: 25px; }
+    #temoignages-container { gap: 20px; }
 }
 </style>
 </head>
@@ -215,7 +235,7 @@ p.subtitle {
 <header>
     <div class="container">
         <h1><i class="fas fa-chart-line"></i> Rapport d'Étude des Vœux</h1>
-        <p class="subtitle">Messages et vœux sincères pour Augustin Muteb, Géologue.</p>
+        <p class="subtitle">Analyse des témoignages et vœux sincères pour Augustin Muteb, Ingénieur Géologue.</p>
     </div>
 </header>
 
@@ -248,16 +268,14 @@ p.subtitle {
 </footer>
 
 <script>
-// ==========================================================
-// 🚨 CONFIGURATION FIREBASE (MISE À JOUR)
-// ==========================================================
+// Configuration Firebase (Doit être la même que index.html)
 const firebaseConfig={
-  apiKey:"AIzaSyAiMnvIMBqn2VqSQsFpb-Ajx5VORVd0JoA",
-  authDomain: "danicakakudji.firebaseapp.com",
-  projectId: "danicakakudji",
-  storageBucket: "danicakakudji.firebasestorage.app",
-  messagingSenderId: "409346091245",
-  appId: "1:409346091245:web:6674becbc81d97c292c4e4"
+  apiKey:"AIzaSyCQWUPt2d5RaPvPfSqgi4oU-VxMpL6STvQ",
+  authDomain:"shekinahmukeni-74b9d.firebaseapp.com",
+  projectId:"shekinahmukeni-74b9d",
+  storageBucket:"shekinahmukeni-74b9d.appspot.com",
+  messagingSenderId:"351153147633",
+  appId:"1:351153147633:web:c82d85f1ad9a79d6ed6350"
 };
 firebase.initializeApp(firebaseConfig);
 const db=firebase.firestore();
@@ -268,19 +286,19 @@ const loading = document.getElementById('loading');
 const noMessages = document.getElementById('no-messages');
 
 /**
- * Logique pour l'effet de Parallaxe 
+ * Logique pour l'effet de Parallaxe 
  */
 const heroImg = document.getElementById('hero-img');
 if (heroImg) {
     window.addEventListener('scroll', () => {
         const scrollPosition = window.scrollY;
-        const yOffset = Math.min(scrollPosition * 0.2, 30);
+        const yOffset = Math.min(scrollPosition * 0.2, 30); // Légèrement augmenté
         heroImg.style.setProperty('--y', `${yOffset}px`);
     });
 }
 
 /**
- * Logique pour la Barre de Progression de Lecture 
+ * Logique pour la Barre de Progression de Lecture 
  */
 window.addEventListener('scroll', () => {
     const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -290,10 +308,11 @@ window.addEventListener('scroll', () => {
 });
 
 
-/* FONCTIONS FIREBASE ET AFFICHAGE */
+/* FONCTIONS FIREBASE ET AFFICHAGE (Optimisation de la création de carte) */
 function formatDate(timestamp) {
     if (!timestamp || !timestamp.toDate) return 'Date inconnue';
     const date = timestamp.toDate();
+    // Format professionnel et complet
     return date.toLocaleDateString('fr-FR', {
         year: 'numeric',
         month: 'long',
@@ -306,7 +325,7 @@ function formatDate(timestamp) {
 
 function createCardHTML(data) {
     const formattedDate = formatDate(data.timestamp);
-    // Sécurité : Assurer que le nom et le message sont sûrs
+    // Sécurité renforcée
     const safeName = data.name ? data.name.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'Anonyme';
     const safeMessage = data.message ? data.message.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, '<br>') : 'Message vide.';
 
@@ -332,13 +351,8 @@ async function loadTestimonials() {
     container.innerHTML = '';
     noMessages.style.display = 'none';
 
-    // Définir le destinataire attendu pour le filtre (Augustin Muteb)
-    const DESTINATAIRE = "Augustin Muteb"; 
-
     try {
-        // REQUÊTE FILTRÉE ET TRIÉE (Nécessite l'index composite)
         const snapshot = await db.collection("testimonials")
-            .where("recipient", "==", DESTINATAIRE) 
             .orderBy("timestamp", "desc")
             .get();
 
@@ -358,10 +372,8 @@ async function loadTestimonials() {
         container.innerHTML = cardsHTML;
         
     } catch (error) {
-        // Affiche un message d'erreur professionnel si la connexion ou l'index échoue
         console.error("Erreur lors du chargement des témoignages:", error);
-        loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> **Erreur critique de lecture des données.** <br>Si l'erreur persiste, vérifiez que l'**Index Composite Firestore** suivant a été créé : <strong>\`testimonials\`</strong> avec les champs <strong>\`recipient (Asc)\`</strong> et <strong>\`timestamp (Desc)\`</strong>.`;
-        loading.style.display = 'block';
+        loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Erreur critique lors du chargement des données. Veuillez vérifier la connexion Firebase.`;
     }
 }
 
