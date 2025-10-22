@@ -6,12 +6,9 @@
     <title>Rapport du Livre d'Or | Augustin Muteb Géologue</title>
     <meta name="description" content="Rapport complet et professionnel des témoignages et vœux laissés pour Augustin Muteb, Géologue diplômé.">
     
-    <!-- Fonts Google Professionnelles -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Icônes FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <!-- Scripts Firebase V8 Compatibility (essentiels pour l'utilisation sans module) -->
     <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js" defer></script>
 
@@ -153,6 +150,9 @@
             border-bottom: 2px solid #EEE; 
             padding-bottom: 20px;
             white-space: pre-wrap; 
+            /* 🔑 LIGNES DE CORRECTION AJOUTÉES CI-DESSOUS 🔑 */
+            width: 100%; /* Assure que le bloc prend toute la largeur de la carte */
+            word-break: break-word; /* Gère les mots très longs sans débordement, résout les "effets bizarres" */
         }
         .card-message i.fa-quote-left {
             color: var(--primaire-fonce); 
@@ -331,7 +331,6 @@
 <div id="progressBar"></div>
 
 <div class="hero">
-    <!-- Image de fond avec Parallaxe. Utilisez une photo professionnelle ici. -->
     <img id="hero-img" src="photo8.jpeg" alt="Portrait Professionnel d'Augustin Muteb, Géologue" loading="lazy" style="transform: translateY(var(--y, 0));" onerror="this.src='https://placehold.co/1400x400/004D99/FFFFFF?text=Photo+Professionnelle'"/>
 </div>
 
@@ -381,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
         projectId:"danicakakudji",
         storageBucket:"danicakakudji.firebasestorage.app",
         messagingSenderId:"409346091245",
-        appId:"1:409346091245:web:6674becbc81d97c292c4e4"
+        appId:"1:409346091245:web:6674becbc81d97c292e4e4"
     };
 
     // --- 1. INITIALISATION FIREBASE SÉCURISÉE ---
