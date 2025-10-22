@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Livre d'Or PRO – Félicitations à Augustin Muteb, Géologue</title>
+<title>Livre d'Or – Félicitations à Augustin Muteb, Géologue</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -13,18 +13,18 @@
 <style>
 /* VARIABLES CSS MODERNES (Thème Géologie : Bleu/Gris) */
 :root {
-    --primaire: #0077B6; /* Bleu Azur élégant (Rappeler le ciel ou l'eau, neutre) */
+    --primaire: #0077B6; /* Bleu Azur élégant */
     --primaire-fonce: #005A8D;
-    --secondaire: #FFC300; /* Or Vif pour l'excellence (légèrement ajusté) */
+    --secondaire: #FFC300; /* Or Vif pour l'excellence */
     --fond-clair: #F0F4F7; /* Gris très clair légèrement bleuté */
     --fond-sombre: #fff;
     --texte: #2C3E50; /* Gris-Bleu foncé (Ardoise) */
-    --ombre-pro: 0 20px 50px rgba(0, 0, 0, 0.1); /* Ombre plus marquée */
+    --ombre-pro: 0 20px 50px rgba(0, 0, 0, 0.1); 
     --rayon-grand: 25px;
     --transition-rapide: 0.35s ease-in-out;
 }
 
-/* 1. RESET ET FOND */
+/* RESET ET FOND */
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
@@ -35,7 +35,6 @@ body {
     line-height: 1.6;
     opacity: 0;
     animation: fadeIn 1.2s forwards;
-    /* Amélioration : Dégradé de fond subtil */
     background: linear-gradient(180deg, var(--fond-clair) 0%, #E3E9EE 100%);
 }
 @keyframes fadeIn { to { opacity: 1; } }
@@ -47,11 +46,11 @@ body {
     padding: 0 20px;
 }
 
-/* 2. HEADER FLOTTANT ET LOGO (Amélioration PRO) */
+/* HEADER FLOTTANT */
 header {
     background-color: var(--fond-sombre);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    position: sticky; /* Rendre le header flottant */
+    position: sticky; 
     top: 0;
     z-index: 100;
     padding: 10px 0;
@@ -63,23 +62,18 @@ header {
     color: var(--primaire-fonce);
     display: block;
     text-decoration: none;
-    transition: color 0.3s;
-}
-.header-logo:hover {
-    color: var(--secondaire);
 }
 
 /* --- HERO (CAROUSEL) --- */
 .hero {
     position: relative;
-    height: 500px; /* Légèrement augmenté */
+    height: 550px; /* Hauteur augmentée */
     overflow: hidden;
     border-radius: var(--rayon-grand);
     box-shadow: var(--ombre-pro);
     margin-bottom: 50px;
     margin-top: 20px;
 }
-/* Votre CSS de carrousel est conservé et efficace */
 .carousel-slide {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     opacity: 0; transition: opacity 1.5s ease-in-out;
@@ -87,7 +81,7 @@ header {
 .carousel-slide.active { opacity: 1; }
 .carousel-slide img {
     width: 100%; height: 100%; object-fit: cover;
-    filter: grayscale(30%) brightness(70%); /* Plus sombre pour meilleur contraste */
+    filter: grayscale(0%) brightness(100%); /* RETRAIT DES FILTRES pour visibilité */
     transition: transform 6s linear; transform-origin: center center;
 }
 .carousel-slide.active img { animation: kenBurns 15s infinite alternate; }
@@ -100,17 +94,17 @@ header {
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
-    background: rgba(44, 62, 80, 0.85); /* Plus d'opacité */
-    padding: 40px 70px; /* Plus grand */
+    background: rgba(44, 62, 80, 0.85); 
+    padding: 40px 70px; 
     border-radius: var(--rayon-grand);
     backdrop-filter: blur(10px);
     font-family: 'Playfair Display', serif;
-    border: 3px solid var(--secondaire); /* Bordure plus épaisse */
+    border: 3px solid var(--secondaire); 
     z-index: 10; transition: all 0.5s;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 .hero-text h1 {
-    font-size: 52px; /* Plus grand */
+    font-size: 52px; 
     margin-bottom: 5px;
     letter-spacing: 3px;
     color: var(--secondaire);
@@ -128,25 +122,24 @@ h2.section-title {
     color: var(--primaire-fonce);
     margin: 60px 0 20px;
     font-family: 'Playfair Display', serif;
-    font-size: 3.5em; /* Plus grand */
+    font-size: 3.5em; 
     font-weight: 700;
     position: relative;
     display: inline-block;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
 }
 h2.section-title::after {
     content: '';
     position: absolute;
-    bottom: -15px; /* Plus bas */
+    bottom: -15px; 
     left: 50%;
     transform: translateX(-50%);
-    width: 100px; /* Plus large */
-    height: 4px; /* Plus épais */
+    width: 100px; 
+    height: 4px; 
     background-color: var(--secondaire);
     border-radius: 2px;
 }
 p.intro {
-    font-size: 1.4em; /* Plus grand */
+    font-size: 1.4em; 
     margin-bottom: 50px;
     max-width: 800px;
     margin-left: auto;
@@ -154,66 +147,112 @@ p.intro {
     color: #555;
 }
 
-/* 3. FORMULAIRE AMÉLIORÉ (Focus professionnel) */
+/* FORMULAIRE */
 form {
-    max-width: 850px; /* Plus large */
-    padding: 50px; /* Plus d'espace */
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); /* Ombre plus douce */
-    border-top: 8px solid var(--primaire); /* Bordure plus épaisse */
+    margin: 0 auto 60px auto;
+    max-width: 850px;
+    background: var(--fond-sombre);
+    padding: 50px; 
+    border-radius: var(--rayon-grand);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); 
+    text-align: left;
+    border-top: 8px solid var(--primaire); 
+    transition: transform 0.4s ease;
 }
 label {
     color: var(--primaire-fonce);
     font-size: 1.1em;
+    font-weight: 700;
 }
 input[type="text"], textarea {
-    padding: 18px; /* Plus d'espace */
-    border-radius: 15px; /* Plus arrondi */
-    border: 1px solid #ccc; /* Bordure plus douce */
+    width: 100%;
+    padding: 18px; 
+    margin-top: 8px;
+    border-radius: 15px; 
+    border: 1px solid #ccc;
     font-size: 1.15em;
-    background-color: #FDFDFD;
+    font-family: inherit;
+    resize: vertical;
 }
 input[type="text"]:focus, textarea:focus {
     border-color: var(--primaire);
-    box-shadow: 0 0 0 5px rgba(0, 119, 182, 0.15); /* Ombre plus délicate */
+    outline: none;
+    box-shadow: 0 0 0 5px rgba(0, 119, 182, 0.15);
 }
 
 /* BOUTON D'ACTION AMÉLIORÉ */
 button[type="submit"] {
-    padding: 20px 24px; /* Plus de hauteur */
-    border-radius: 18px; /* Plus arrondi */
-    font-size: 1.3em; /* Plus grand */
-    background-image: linear-gradient(45deg, var(--primaire), var(--primaire-fonce)); /* Dégradé */
+    width: 100%;
+    padding: 20px 24px;
+    border-radius: 18px; 
+    font-size: 1.3em;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-image: linear-gradient(45deg, var(--primaire), var(--primaire-fonce)); 
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.4, 1);
     box-shadow: 0 8px 20px rgba(0, 119, 182, 0.4);
+    position: relative;
+    overflow: hidden;
 }
 button[type="submit"]:hover {
-    transform: translateY(-7px); /* Soulève un peu plus */
+    transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
-button[type="submit"] i {
-    margin-right: 8px;
+button[type="submit"]::after { /* Effet brillant */
+    content: '';
+    position: absolute; top: 0; left: -100%; width: 30%; height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: skewX(-20deg);
+    transition: left 0.8s ease;
 }
-button[type="submit"]:disabled {
-    background-image: none;
-    background-color: #ccc;
-    box-shadow: none;
-}
+button[type="submit"]:hover::after { left: 100%; }
 
 /* MESSAGE DE CONFIRMATION AVEC EFFET */
 .confirmation {
-    color: #04AA6D; /* Vert réussite plus fort */
+    text-align: center;
+    color: #04AA6D;
+    font-weight: 700;
+    margin-top: 25px;
+    padding: 20px; /* Plus grand */
     background-color: #D4EDDA;
-    border-color: #C3E6CB;
+    border: 1px solid #C3E6CB;
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s, transform 0.5s;
+    display: none; /* Caché par défaut */
+}
+.confirmation.visible {
+    opacity: 1;
+    transform: translateY(0);
+    display: block; /* Apparaît */
 }
 
 /* LIEN VERS LE LIVRE */
+.link-livre {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
 .link-livre a {
-    font-size: 1.25em; /* Plus grand */
+    color: var(--fond-sombre);
+    background-color: var(--secondaire); /* Bouton en Or */
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.25em; 
     padding: 15px 30px;
-    border-width: 3px; /* Bordure plus épaisse */
+    border: 3px solid var(--secondaire);
     border-radius: 15px;
+    transition: all var(--transition-rapide);
+    display: inline-block;
 }
 .link-livre a:hover {
-    box-shadow: 0 8px 20px rgba(0, 119, 182, 0.4);
+    background-color: var(--secondaire);
+    color: var(--texte); /* Texte foncé sur l'or */
+    box-shadow: 0 8px 20px rgba(255, 195, 0, 0.5);
+    transform: scale(1.05);
 }
 
 /* PIED DE PAGE */
@@ -223,16 +262,15 @@ footer {
     margin-top: 60px;
     background-color: var(--fond-sombre);
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03);
+    color: #777;
+    font-size: 0.9em;
 }
 
-/* MEDIA QUERIES POUR MOBILE */
+/* MEDIA QUERIES */
 @media(max-width: 768px) {
+    .hero { height: 450px; }
     .hero-text h1 { font-size: 40px; }
-    .hero-text p { font-size: 18px; }
-    h2.section-title { font-size: 2.5em; }
-    form { padding: 25px; margin: 0 10px 40px; }
-    input[type="text"], textarea { padding: 15px; font-size: 1.1em; }
-    .hero { height: 400px; }
+    form { padding: 25px; }
 }
 </style>
 </head>
@@ -245,6 +283,7 @@ footer {
         </a>
     </div>
 </header>
+
 <div class="container">
     
   <section class="hero">
@@ -253,51 +292,49 @@ footer {
       <div class="carousel-slide"><img src="photo2.jpg" alt="Cérémonie Université de Kolwezi" loading="lazy"/></div>
       <div class="carousel-slide"><img src="photo3.jpeg" alt="Augustin Muteb avec ses professeurs" loading="lazy"/></div>
       <div class="carousel-slide"><img src="photo4.jpeg" alt="Groupe d'amis Géologues" loading="lazy"/></div>
-      <div class="carousel-slide"><img src="photo5.jpeg" alt="Groupe d'amis Géologues" loading="lazy"/></div>
-      <div class="carousel-slide"><img src="photo6.jpeg" alt="Groupe d'amis Géologues" loading="lazy"/></div>
-      <div class="carousel-slide"><img src="photo7.jpeg" alt="Groupe d'amis Géologues" loading="lazy"/></div>
-          </div>
+      <div class="carousel-slide"><img src="photo5.jpeg" alt="Groupe d'amis Géologues" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="photo6.jpeg" alt="Groupe d'amis Géologues" loading="lazy"/></div>
+      <div class="carousel-slide"><img src="photo7.jpeg" alt="Groupe d'amis Géologues" loading="lazy"/></div>
+            
+      </div>
         <div class="hero-text">
       <h1><i class="fas fa-mountain"></i> Augustin Muteb</h1>
       <p>« L'avenir est construit sur une base solide. Félicitations, Géologue ! »</p>
-      <p style="font-size: 18px; margin-top: 15px;">**Diplômé de l'Université de Kolwezi**</p>
+      <p style="font-size: 18px; margin-top: 15px;">Diplômé de l'Université de Kolwezi</p>
     </div>
   </section>
 
-  <h2 class="section-title">✍️ Le Registre des Vœux</h2>
+  <h2 class="section-title">✍️ Livre d’Or</h2>
   <p class="intro">
-    Laissez votre marque sur la nouvelle fondation d'Augustin. Chaque mot est une ressource précieuse pour son cheminement professionnel en **Ingénierie Géologique**. Exprimez votre soutien avec distinction.
+    Laissez votre marque sur la nouvelle fondation d'Augustin le Mwant. Chaque mot écrit est une ressource précieuse pour son cheminement professionnel. Exprimez votre soutien avec joie et amour.
   </p>
 
   <div class="form-card">
     <form id="formTemoignage">
       <div class="input-group">
-        <label for="nom">Votre nom et titre (ex: Prof. Kabwe / Ing. Tshibangu) :</label>
-        <input type="text" id="nom" placeholder="Ex : Ing. Tshibangu Junior, GECAMINES" required maxlength="50"/>
+        <label for="nom">Votre nom :</label>         <input type="text" id="nom" placeholder="Ex : Arsene Mwamba" required maxlength="50"/>
       </div>
       
       <div class="input-group">
-        <label for="message">Votre message de félicitations professionnel (Max 500 mots) :</label>
-        <textarea id="message" rows="7" placeholder="Cher Augustin, le sol est maintenant tien ! Je te souhaite une carrière riche en découvertes et en succès techniques..." required minlength="10" maxlength="500"></textarea>
+        <label for="message">Votre message de soutien pour Augustin Muteb le Mwant :</label>         <textarea id="message" rows="7" placeholder="Cher Augustin, felicitations pour cette nouvelle étape..." required minlength="10" maxlength="500"></textarea>
       </div>
 
       <button type="submit">
-        <i class="fas fa-hammer"></i> Finaliser et **Graver** mon message de soutien
+        <i class="fas fa-hammer"></i> Envoyer mon message de soutien
       </button>
-      <div id="confirmation" class="confirmation">Votre message a été enregistré avec succès ! Merci de votre contribution au succès d'Augustin. 🍾</div>
+            <div id="confirmation" class="confirmation">Votre message a été enregistré avec succès ! Merci de votre contribution au succès d'Augustin, plus bas accedez au livre d'or. 🍾</div>
     </form>
   </div>
   
-  <div class="link-livre"><a href="livre.html"><i class="fas fa-book-open"></i> Visualiser le **Livre d’Or Complet**</a></div>
-
-</div>
+  <div class="link-livre"><a href="livre.html"><i class="fas fa-book-open"></i> Accéder au Livre d’Or Complet</a></div>
+    </div>
 
 <footer>
-  — Conception Professionnelle : Gabby Umba | Contact: +243 99 72 27 819 —
+  — Gabby Umba  — Developpeur | Contact: +243 99 72 27 819 —
 </footer>
 
 <script>
-// Configuration Firebase (Doit être vérifiée, mais laissée telle quelle)
+// Configuration Firebase (Vérifiez votre API KEY ici)
 const firebaseConfig={
   apiKey:"AIzaSyCQWUPt2d5RaPvPfSqgi4oU-VxMpL6STvQ",
   authDomain:"shekinahmukeni-74b9d.firebaseapp.com",
@@ -306,7 +343,6 @@ const firebaseConfig={
   messagingSenderId:"351153147633",
   appId:"1:351153147633:web:c82d85f1ad9a79d6ed6350"
 };
-// Initialisation Firebase
 firebase.initializeApp(firebaseConfig);
 const db=firebase.firestore();
 
@@ -315,7 +351,7 @@ const form=document.getElementById('formTemoignage');
 const confirmation=document.getElementById('confirmation');
 const submitButton = form.querySelector('button[type="submit"]');
 
-// --- LOGIQUE DU CARROUSEL DE PHOTOS (Conservée et améliorée) ---
+// --- LOGIQUE DU CARROUSEL ---
 const slides = document.querySelectorAll('#carousel .carousel-slide');
 let currentSlide = 0;
 const intervalTime = 5000; 
@@ -325,53 +361,56 @@ function nextSlide() {
     currentSlide = (currentSlide + 1) % slides.length;
     slides[currentSlide].classList.add('active');
 }
-
-// Démarrer le carrousel
 if (slides.length > 0) {
     slides[0].classList.add('active'); 
     setInterval(nextSlide, intervalTime);
 }
 
-// --- LOGIQUE DE GESTION DU FORMULAIRE (Conservée et Professionnalisée) ---
-form.addEventListener('submit', async e=>{
-    e.preventDefault();
-    
-    submitButton.disabled = true;
-    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi sécurisé en cours...';
+// --- LOGIQUE DE GESTION DU FORMULAIRE AVEC DESTINATAIRE ---
+form.addEventListener('submit', async e => {
+    e.preventDefault();
 
-    const name=document.getElementById('nom').value.trim();
-    const message=document.getElementById('message').value.trim();
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi sécurisé en cours...';
 
-    if(name.length<2||message.length<10){ 
-        alert("Erreur: Veuillez inclure votre nom/titre (min. 2 caractères) et un message complet (min. 10 caractères)."); 
-        submitButton.disabled = false;
-        submitButton.innerHTML = '<i class="fas fa-hammer"></i> Finaliser et Graver mon message de soutien';
-        return; 
-    }
-    
-    try {
-        await db.collection("testimonials").add({
-            name: name,
-            message: message,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            source: "formulaire_principal_pro"
-        });
+    const name = document.getElementById('nom').value.trim();
+    const message = document.getElementById('message').value.trim();
 
-        form.reset();
-        confirmation.classList.add('visible');
-        
-        setTimeout(()=>{
-            confirmation.classList.remove('visible');
-            submitButton.disabled = false;
-            submitButton.innerHTML = '<i class="fas fa-hammer"></i> Finaliser et **Graver** mon message de soutien';
-        }, 6000); /* Augmenté à 6s pour un sentiment d'achèvement */
-        
-    } catch(err) {
-        console.error("Erreur lors de l'ajout du message:", err);
-        alert("Une erreur technique est survenue (Firebase). Veuillez contacter l'administrateur. Merci.");
-        submitButton.disabled = false;
-        submitButton.innerHTML = '<i class="fas fa-hammer"></i> Finaliser et **Graver** mon message de soutien';
-    }
+    if (name.length < 2 || message.length < 10) {
+        alert("Erreur: Veuillez inclure votre nom (min. 2 caractères) et un message complet (min. 10 caractères).");
+        submitButton.disabled = false;
+        submitButton.innerHTML = '<i class="fas fa-hammer"></i> Graver mon message de soutien';
+        return;
+    }
+
+    try {
+        // AJOUT DU CHAMP DE FILTRAGE
+        await db.collection("testimonials").add({
+            name: name,
+            message: message,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            recipient: "Augustin Muteb", // <-- ESSENTIEL POUR LE FILTRAGE
+            source: "formulaire_principal_pro"
+        });
+
+        // AFFICHAGE DE LA CONFIRMATION
+        form.reset();
+        confirmation.style.display = 'block'; // Fait apparaître le bloc
+        setTimeout(() => confirmation.classList.add('visible'), 50);
+
+        setTimeout(() => {
+            confirmation.classList.remove('visible');
+            setTimeout(() => confirmation.style.display = 'none', 500); // Cache le bloc après l'animation
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<i class="fas fa-hammer"></i> Graver mon message de soutien';
+        }, 6000);
+
+    } catch (err) {
+        console.error("Erreur lors de l'ajout du message:", err);
+        alert("Une erreur technique est survenue. Veuillez réessayer plus tard.");
+        submitButton.disabled = false;
+        submitButton.innerHTML = '<i class="fas fa-hammer"></i> Graver mon message de soutien';
+    }
 });
 </script>
 </body>
