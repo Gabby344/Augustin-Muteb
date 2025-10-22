@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Scripts Firebase V8 Compatibility (essentiels pour l'utilisation sans module) -->
-    <!-- Ils sont chargés en tête mais exécutés DEFERRED pour garantir la présence des objets -->
     <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js" defer></script>
 
@@ -84,6 +83,8 @@
             position: relative;
             display: inline-block;
             font-weight: 800;
+            /* Rendre le titre fluide pour les petits écrans */
+            font-size: clamp(2.5rem, 6vw, 4rem); 
         }
         h1 i {
             color: var(--secondaire);
@@ -97,9 +98,10 @@
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
+            font-size: clamp(1rem, 2.5vw, 1.6em); /* Rendre le sous-titre fluide */
         }
 
-        /* EFFET DE PARALLAXE SUR LA PHOTO (Conservation) */
+        /* EFFET DE PARALLAXE SUR LA PHOTO */
         .hero {
             max-height: 400px; 
             overflow: hidden;
@@ -117,8 +119,9 @@
 
         /* GRILLE DES TÉMOIGNAGES */
         #temoignages-container {
+            /* Excellent pour la flexibilité sur tous les écrans */
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
             gap: 40px; 
             margin-top: 40px;
         }
@@ -146,7 +149,7 @@
             color: var(--texte);
             border-bottom: 2px solid #EEE; 
             padding-bottom: 20px;
-            white-space: pre-wrap; /* Pour conserver les sauts de ligne */
+            white-space: pre-wrap; 
         }
         .card-message i.fa-quote-left {
             color: var(--primaire-fonce); 
@@ -161,10 +164,6 @@
             display: block; 
             margin-bottom: 5px;
         }
-        .card-author-name i {
-            color: var(--secondaire);
-            margin-right: 8px;
-        }
         .card-timestamp {
             font-size: 0.95em;
             color: #6C757D;
@@ -173,73 +172,70 @@
 
         /* ÉTATS PARTICULIERS (Chargement/Erreur) */
         #loading, #no-messages {
-            background-color: var(--fond-sombre);
+            max-width: 600px; /* Limiter la largeur sur les grands écrans */
             margin: 50px auto;
             padding: 40px;
+            background-color: var(--fond-sombre);
             border-radius: var(--rayon-faible);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--accent-rouge); 
-            font-size: 1.3em;
+            box-shadow: var(--ombre-pro);
+            text-align: center;
+            border-left: 10px solid var(--accent-rouge);
+            font-size: 1.2em;
             color: var(--texte);
         }
-        #loading i.fa-spin { color: var(--primaire); margin-right: 10px; }
-        #no-messages {
-            border-left: 5px solid var(--secondaire);
+        #loading i, #no-messages i {
+            margin-right: 15px;
             color: var(--primaire);
+            font-size: 1.5em;
         }
-
-
-        /* BOUTONS D'ACTION (Style CTA Pro) */
+        
+        /* ======================================================= */
+        /* ============ 4. NOUVEAU STYLE DE BOUTONS PRO =========== */
+        /* ======================================================= */
         .action-buttons {
             display: flex;
             justify-content: center;
             align-items: center;
             margin-top: 80px; 
-            gap: 40px;
-        }
-        .action-buttons a, .action-buttons button {
-            text-decoration: none;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition-rapide);
-            display: inline-flex;
-            align-items: center;
+            gap: 30px; /* Espacement entre les boutons */
         }
         
-        /* Bouton IMPRIMER (Primaire) */
-        #printButton {
+        .action-buttons a, .action-buttons button {
+            /* Styles de bouton professionnels */
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-radius: 12px;
+            border: none;
+            letter-spacing: 0.5px;
+
+            /* Couleurs */
             background-image: linear-gradient(135deg, var(--primaire), var(--primaire-fonce));
-            padding: 18px 35px;
-            border-radius: 50px; 
-            font-weight: 700;
-            font-size: 1.1em;
-            box-shadow: 0 10px 20px rgba(0, 77, 153, 0.3);
-        }
-        #printButton:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(0, 77, 153, 0.5);
-        }
-
-        /* Lien RETOUR (Secondaire - Or) */
-        .action-buttons a {
-            background-image: linear-gradient(135deg, var(--secondaire), #FFD700); 
-            padding: 18px 35px;
-            border-radius: 50px; 
-            font-weight: 700;
-            font-size: 1.1em;
-            color: var(--texte);
-            box-shadow: 0 10px 20px rgba(255, 195, 0, 0.3);
-        }
-        .action-buttons a:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(255, 195, 0, 0.5);
-            color: var(--primaire-fonce);
+            color: var(--fond-sombre);
+            box-shadow: 0 10px 25px rgba(0, 77, 153, 0.4);
+            padding: 18px 30px; 
+            font-size: 1.1em; 
+            display: inline-flex; /* Assure l'alignement des icônes */
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap; /* Empêche le texte de se rompre */
         }
 
-        .action-buttons i { margin-right: 10px; }
-
-
+        .action-buttons a:hover, .action-buttons button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 40px rgba(0, 77, 153, 0.6);
+            opacity: 0.98;
+        }
+        .action-buttons a:active, .action-buttons button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0, 77, 153, 0.4);
+        }
+        .action-buttons a i, .action-buttons button i {
+            margin-right: 10px;
+        }
+        
         /* PIED DE PAGE */
         footer {
             padding: 25px 0;
@@ -247,15 +243,74 @@
             color: #fff; 
             font-size: 0.9em;
             margin-top: 50px;
+            /* Rendre le pied de page visible sur mobile */
         }
 
-        /* OPTIMISATION POUR IMPRESSION */
+        /* ======================================================= */
+        /* ============ 5. MEDIA QUERIES (RÉSOLUTION FINALE) ===== */
+        /* ======================================================= */
+
+        /* Mobile (Écrans < 600px) */
+        @media(max-width: 600px) {
+            header { padding: 30px 0 15px 0; }
+            h1 { 
+                font-size: 1.8em; /* Titre plus compact */
+                letter-spacing: 1px;
+            }
+            .subtitle { 
+                font-size: 1em; 
+                padding: 0 10px;
+            }
+            .hero img { height: 250px; } /* Image encore plus compacte */
+            
+            #temoignages-container { 
+                grid-template-columns: 1fr; /* Une seule colonne, obligatoire pour mobile */
+                gap: 20px; 
+                margin-top: 20px;
+            }
+            .card { 
+                padding: 20px; 
+                border-left-width: 5px;
+            }
+
+            /* Mise en colonne des boutons d'action */
+            .action-buttons { 
+                flex-direction: column; 
+                gap: 15px; /* Empilement vertical */
+                margin-top: 40px;
+            }
+            .action-buttons a, .action-buttons button {
+                width: 90%; 
+                max-width: 350px;
+                padding: 15px 20px;
+                font-size: 1em; /* Réduction de la taille de police */
+            }
+            
+            footer {
+                padding: 20px 10px;
+                font-size: 0.8em;
+            }
+        }
+
+        /* Tablette (Écrans 601px à 992px) */
+        @media(min-width: 601px) and (max-width: 992px) {
+            h1 { font-size: 3em; }
+            .subtitle { font-size: 1.4em; }
+            #temoignages-container { 
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+                gap: 30px; 
+            }
+            .card { padding: 30px; }
+        }
+
+        /* OPTIMISATION POUR IMPRESSION (Non-imprimé) */
         @media print {
             body {
                 background-color: #fff !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
+            /* Masquer tous les éléments non pertinents pour le rapport imprimé */
             .hero, header, .action-buttons, footer, #progressBar {
                 display: none !important;
             }
@@ -274,19 +329,9 @@
                 border-radius: 0 !important;
                 margin: 15px 0 !important;
                 padding: 15px !important;
-                border-left: 10px solid #000 !important; /* Bordure noire pour impression */
+                border-left: 10px solid #000 !important; /* Bord noir pour l'impression */
                 page-break-inside: avoid; 
             }
-        }
-
-        /* MEDIA QUERIES */
-        @media(max-width: 768px) {
-            h1 { font-size: 2.5em; letter-spacing: 1px;}
-            .subtitle { font-size: 1.2em; }
-            .hero img { height: 300px; }
-            .card { padding: 25px; }
-            #temoignages-container { gap: 20px; grid-template-columns: 1fr; }
-            .action-buttons { flex-direction: column; gap: 20px; margin-top: 50px;}
         }
     </style>
 </head>
@@ -323,8 +368,9 @@
         <button id="printButton" onclick="window.print()">
             <i class="fas fa-print"></i> Générer le Rapport d'Impression
         </button>
+        <!-- L'élément <a> est maintenant stylisé comme un bouton -->
         <a href="index.html">
-            <i class="fas fa-pen-nib"></i>Retour vers la page d'accueil
+            <i class="fas fa-pen-nib"></i> Retour vers la page d'accueil
         </a>
     </div>
 
@@ -350,22 +396,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. INITIALISATION FIREBASE SÉCURISÉE ---
     let db = null;
-    let authError = false;
-
-    if (typeof firebase !== 'undefined' && typeof firebase.apps !== 'undefined') {
-        try {
+    try {
+        if (typeof firebase !== 'undefined' && typeof firebase.apps !== 'undefined') {
             if (!firebase.apps.length) {
                 firebase.initializeApp(firebaseConfig);
             }
+            // Utilisation de V8 Compatibility
             db = firebase.firestore();
             console.log("Firebase et Firestore initialisés avec succès dans livre.html.");
-        } catch (e) {
-            console.error("Erreur d'initialisation de Firebase dans livre.html:", e);
-            authError = true;
+        } else {
+            throw new Error("Objet 'firebase' non défini.");
         }
-    } else {
-        console.error("ERREUR CRITIQUE: L'objet 'firebase' n'est pas défini. Les scripts SDK n'ont pas été chargés.");
-        authError = true;
+    } catch (e) {
+        console.error("Erreur d'initialisation de Firebase dans livre.html:", e.message);
+        // Mise à jour de l'UI pour signaler l'erreur
+        document.getElementById('loading').innerHTML = `<i class="fas fa-exclamation-triangle"></i> ERREUR : Base de données inaccessible. ${e.message}`;
+        document.getElementById('loading').style.color = 'var(--accent-rouge)';
+        document.getElementById('loading').style.borderLeftColor = 'var(--accent-rouge)';
     }
 
 
@@ -380,7 +427,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroImg) {
         window.addEventListener('scroll', () => {
             const scrollPosition = window.scrollY;
-            // Déplacement maximal de l'image : 40px
             const yOffset = Math.min(scrollPosition * 0.25, 40); 
             heroImg.style.setProperty('--y', `${yOffset}px`); 
         });
@@ -390,7 +436,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollPosition = window.scrollY;
-        // Empêche la division par zéro si la page est petite
         const progress = totalHeight > 0 ? (scrollPosition / totalHeight) * 100 : 100;
         document.getElementById('progressBar').style.width = `${progress}%`;
     });
@@ -400,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function formatDate(timestamp) {
         if (!timestamp || !timestamp.toDate) return 'Date inconnue';
         const date = timestamp.toDate();
-        // Format professionnel complet pour le Congo (fr-CD) ou par défaut fr-FR
+        // Format professionnel complet
         return date.toLocaleDateString('fr-CD', {
             year: 'numeric',
             month: 'long',
@@ -420,7 +465,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // SANITATION: Nettoyer le contenu pour éviter les injections XSS
         const sanitize = (str) => {
             if (!str) return '';
-            // Créer un élément temporaire pour encoder le HTML
             const div = document.createElement('div');
             div.textContent = str;
             return div.innerHTML;
@@ -449,9 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadTestimonials() {
         if (!db) {
-            loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ERREUR : Base de données inaccessible. Vérifiez la configuration.`;
-            loading.style.color = 'var(--accent-rouge)';
-            loading.style.borderLeftColor = 'var(--accent-rouge)';
+            loading.style.display = 'block';
             return;
         }
 
@@ -459,8 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = '';
         noMessages.style.display = 'none';
 
-        // Utilisation de onSnapshot pour la mise à jour en temps réel
-        // Tri par 'timestamp' décroissant (les plus récents en premier)
+        // Écoute en temps réel des messages triés par date
         db.collection("testimonials")
             .orderBy("timestamp", "desc") 
             .onSnapshot((snapshot) => {
@@ -481,7 +522,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 container.innerHTML = cardsHTML;
             }, (error) => {
                 console.error("Erreur d'écoute de Firebase:", error);
-                loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ERREUR : Échec de la lecture des données. Vérifiez vos règles de sécurité Firestore.`;
+                loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ERREUR : Échec de la lecture des données. Vérifiez les règles de sécurité de Firestore.`;
                 loading.style.color = 'var(--accent-rouge)';
                 loading.style.borderLeftColor = 'var(--accent-rouge)';
                 loading.style.display = 'block';
