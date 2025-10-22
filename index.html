@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Livre d'Or  💎 – Félicitations à Augustin Muteb, Géologue Diplômé</title>
+    <title>Livre d'Or 💎 – Félicitations à Augustin Muteb, Géologue Diplômé</title>
     <meta name="description" content="Laissez un message professionnel de félicitations à Augustin Muteb, nouvellement diplômé en Ingénierie Géologique de l'Université de Kolwezi.">
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Scripts Firebase V8 Compatibility (essentiels pour l'utilisation sans module) -->
     <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js" defer></script>
 
@@ -47,7 +46,10 @@
             line-height: 1.6;
             opacity: 0;
             animation: fadeIn 1.5s forwards; 
-            background: linear-gradient(180deg, var(--fond-clair) 0%, #E3E9EE 100%);
+            /* Ajout d'une texture de fond pour mieux voir la transparence du formulaire */
+            background: 
+                url('https://www.transparenttextures.com/patterns/clean-paper-and-pencil.png') repeat, 
+                linear-gradient(180deg, var(--fond-clair) 0%, #E3E9EE 100%);
         }
         @keyframes fadeIn { to { opacity: 1; } }
 
@@ -108,7 +110,8 @@
         .carousel-slide.active { opacity: 1; }
         .carousel-slide img {
             width: 100%; height: 100%; object-fit: cover;
-            filter: grayscale(20%) brightness(65%); 
+            /* 🔑 CORRECTION VISIBILITÉ PHOTOS : Réduction du filtre et augmentation de la luminosité */
+            filter: grayscale(10%) brightness(85%); 
             transition: transform 6s linear;
         }
         /* Effet Ken Burns (zoom subtil) sur l'image active */
@@ -194,13 +197,15 @@
         /* ============= 5. FORMULAIRE (CARTE PRO) =============== */
         /* ======================================================= */
         .form-card {
-            background-color: var(--fond-sombre);
+            /* 🔑 CORRECTION TRANSPARENCE FORMULAIRE : Rendre l'encadré semi-transparent */
+            background-color: rgba(255, 255, 255, 0.9); 
             border-radius: var(--rayon-grand);
             box-shadow: var(--ombre-pro);
             max-width: 850px;
             margin: 0 auto 60px;
             overflow: hidden;
             border: 1px solid #e0e0e0;
+            /* Le box-shadow et la bordure permettent de bien distinguer le formulaire */
         }
 
         form {
@@ -225,14 +230,16 @@
             border-radius: 12px; 
             border: 2px solid #ddd;
             font-size: 1.1em;
-            background-color: #FDFDFD;
+            /* 🔑 CORRECTION TRANSPARENCE CHAMPS : Rendre les champs semi-transparents */
+            background-color: rgba(255, 255, 255, 0.7);
             transition: all 0.4s ease;
         }
         input[type="text"]:focus, textarea:focus {
             border-color: var(--primaire);
             outline: none;
             box-shadow: 0 0 0 4px rgba(0, 119, 182, 0.2); 
-            background-color: #fafffe;
+            /* Garder une couleur claire au focus pour le contraste */
+            background-color: #fafffe; 
         }
         textarea {
             resize: vertical;
@@ -406,7 +413,6 @@
 <main class="container">
     <section class="hero">
         <div id="carousel">
-            <!-- VÉRIFIEZ LE CHEMIN ET L'EXTENSION DE CES PHOTOS (e.g. photo1.jpeg ou photo1.jpg) -->
             <div class="carousel-slide active"><img src="photo1.jpg" alt="Augustin Muteb Diplôme" loading="lazy" onerror="this.src='https://placehold.co/1200x550/0077B6/FFFFFF?text=Photo+1'"/></div>
             <div class="carousel-slide"><img src="photo2.jpg" alt="Cérémonie Université de Kolwezi" loading="lazy" onerror="this.src='https://placehold.co/1200x550/5B473D/FFFFFF?text=Photo+2'"/></div>
             <div class="carousel-slide"><img src="photo3.jpeg" alt="Augustin Muteb avec ses professeurs" loading="lazy" onerror="this.src='https://placehold.co/1200x550/FFC300/333333?text=Photo+3'"/></div>
