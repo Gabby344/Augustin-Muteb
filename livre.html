@@ -11,8 +11,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
 
 <style>
-/* ... (Styles CSS conservés tels quels) ... */
-/* VARIABLES CSS (Thème Géologie PRO) */
+/* VARIABLES CSS (Thème Géologie PRO) - Cohérent avec la palette professionnelle */
 :root {
     --primaire: #004D99; /* Bleu Cobalt Profond (plus sérieux) */
     --primaire-fonce: #003366;
@@ -95,7 +94,7 @@ p.subtitle {
     width: 100%;
     height: 350px;
     object-fit: cover;
-    filter: grayscale(0%) brightness(100%); /* RETRAIT DES FILTRES pour visibilité */
+    filter: grayscale(0%) brightness(100%);
     transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transform: translateY(var(--y, 0)) scale(1.05);
 }
@@ -249,7 +248,9 @@ p.subtitle {
 </footer>
 
 <script>
-// Configuration Firebase (MISE À JOUR AVEC VOTRE NOUVELLE CONFIGURATION)
+// ==========================================================
+// 🚨 CONFIGURATION FIREBASE (MISE À JOUR)
+// ==========================================================
 const firebaseConfig={
   apiKey:"AIzaSyAiMnvIMBqn2VqSQsFpb-Ajx5VORVd0JoA",
   authDomain: "danicakakudji.firebaseapp.com",
@@ -305,6 +306,7 @@ function formatDate(timestamp) {
 
 function createCardHTML(data) {
     const formattedDate = formatDate(data.timestamp);
+    // Sécurité : Assurer que le nom et le message sont sûrs
     const safeName = data.name ? data.name.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'Anonyme';
     const safeMessage = data.message ? data.message.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, '<br>') : 'Message vide.';
 
@@ -330,13 +332,13 @@ async function loadTestimonials() {
     container.innerHTML = '';
     noMessages.style.display = 'none';
 
-    // Définir le destinataire attendu pour le filtre
+    // Définir le destinataire attendu pour le filtre (Augustin Muteb)
     const DESTINATAIRE = "Augustin Muteb"; 
 
     try {
-        // REQUÊTE FILTRÉE : N'affiche que les messages destinés à Augustin
+        // REQUÊTE FILTRÉE ET TRIÉE (Nécessite l'index composite)
         const snapshot = await db.collection("testimonials")
-            .where("recipient", "==", DESTINATAIRE) // <-- FILTRE ESSENTIEL
+            .where("recipient", "==", DESTINATAIRE) 
             .orderBy("timestamp", "desc")
             .get();
 
@@ -356,10 +358,10 @@ async function loadTestimonials() {
         container.innerHTML = cardsHTML;
         
     } catch (error) {
-        // Message d'erreur personnalisé en cas de problème d'index
-        console.error("Erreur lors du chargement des témoignages:", error);
-        loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> **Erreur critique lors du chargement des données.** Le problème est l'Index Firestore. <br>Vérifiez la console (F12) pour le lien de création d'index : <strong>recipient (Asc), timestamp (Desc)</strong>.`;
-        loading.style.display = 'block';
+        // Affiche un message d'erreur professionnel si la connexion ou l'index échoue
+        console.error("Erreur lors du chargement des témoignages:", error);
+        loading.innerHTML = `<i class="fas fa-exclamation-triangle"></i> **Erreur critique de lecture des données.** <br>Si l'erreur persiste, vérifiez que l'**Index Composite Firestore** suivant a été créé : <strong>\`testimonials\`</strong> avec les champs <strong>\`recipient (Asc)\`</strong> et <strong>\`timestamp (Desc)\`</strong>.`;
+        loading.style.display = 'block';
     }
 }
 
